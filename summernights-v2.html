@@ -346,82 +346,144 @@
 
     /* Testimonial */
     /* ── Testimonials carousel ── */
-    .testi{position:relative;overflow:hidden;text-align:center;background:linear-gradient(180deg,#1c0d2e,#26112c);}
-    .testi::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 800px 400px at 50% 100%, rgba(232,128,106,0.1), transparent 70%);pointer-events:none;}
+    .testi{
+      position:relative;overflow:hidden;text-align:center;
+      background:linear-gradient(180deg,#1c0d2e,#26112c);
+    }
+    .testi::before{
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(ellipse 700px 400px at 50% 110%, rgba(232,128,106,0.12), transparent 65%),
+        radial-gradient(ellipse 500px 300px at 10% 20%, rgba(100,20,80,0.15), transparent 70%);
+      pointer-events:none;
+    }
     .testi .glow{display:none;}
-    .carousel-wrap{position:relative;max-width:860px;margin:0 auto;}
-    .carousel-track{overflow:hidden;position:relative;}
+
+    /* Outer wrapper — constrains width */
+    .carousel-wrap{
+      position:relative;
+      max-width:820px;
+      margin:0 auto;
+    }
+
+    /* The visible window */
+    .carousel-track{
+      overflow:hidden;
+      width:100%;
+      border-radius:28px;
+    }
+
+    /* The moving belt — LTR so translateX behaves normally */
     .carousel-slides{
       display:flex;
-      direction:ltr; /* force LTR so translateX works correctly inside RTL page */
-      transition:transform .6s cubic-bezier(.4,0,.2,1);
+      flex-direction:row;
+      flex-wrap:nowrap;
+      width:100%;
+      direction:ltr;
+      transition:transform .55s cubic-bezier(.45,0,.15,1);
       will-change:transform;
     }
-    .carousel-slide{
-      min-width:100%;padding:0 16px;
-      display:flex;flex-direction:column;align-items:center;
-      direction:rtl; /* restore RTL for text inside each slide */
-    }
-    .carousel-slide blockquote{
-      font-family:'Cormorant Garamond',serif;font-style:italic;
-      font-size:clamp(20px,3.2vw,28px);
-      color:var(--gold-soft);line-height:1.65;
-      position:relative;z-index:1;
-      background:var(--glass);
-      border:1px solid rgba(212,160,85,0.18);
-      border-radius:24px;
-      padding:40px 48px 36px;
-      backdrop-filter:blur(10px);
-      text-align:center;
-      transition:opacity .4s ease,transform .4s ease;
-    }
-    .carousel-slide blockquote::before{
-      content:'\201C';
-      font-family:'Cormorant Garamond',serif;
-      font-size:90px;color:var(--coral);
-      line-height:.1;display:block;
-      margin-bottom:18px;opacity:.5;
-      font-style:normal;
-    }
-    .carousel-slide blockquote::after{
-      content:'';display:block;
-      width:48px;height:2px;
-      background:linear-gradient(90deg,var(--coral),var(--gold));
-      margin:24px auto 0;border-radius:2px;
-    }
-    @media(max-width:600px){.carousel-slide blockquote{padding:28px 24px 24px;}}
 
-    /* Nav arrows */
-    .carousel-btn{
-      position:absolute;top:50%;transform:translateY(-50%);
-      width:46px;height:46px;border-radius:50%;
-      background:rgba(212,160,85,0.1);
-      border:1.5px solid rgba(212,160,85,0.35);
-      color:var(--gold-soft);font-size:20px;
-      cursor:pointer;z-index:5;
-      display:flex;align-items:center;justify-content:center;
-      transition:all .3s ease;
-      -webkit-appearance:none;appearance:none;
+    /* Each slide = exactly 100% of the track */
+    .carousel-slide{
+      flex:0 0 100%;
+      width:100%;
+      box-sizing:border-box;
+      padding:0;
+      direction:rtl;
     }
-    .carousel-btn:hover{background:rgba(212,160,85,0.2);border-color:var(--gold);transform:translateY(-50%) scale(1.08);}
-    .carousel-btn.prev{right:calc(100% + 14px);}
-    .carousel-btn.next{left:calc(100% + 14px);}
-    @media(max-width:1060px){
-      .carousel-btn{top:auto;transform:none;bottom:-58px;}
-      .carousel-btn.prev{right:auto;left:12px;}
-      .carousel-btn.next{left:auto;right:12px;}
-      .carousel-wrap{padding-bottom:76px;}
+
+    /* The card itself */
+    .testi-card{
+      margin:0;
+      padding:44px 52px 40px;
+      background:linear-gradient(145deg,rgba(60,20,70,0.75),rgba(30,10,50,0.85));
+      border:1px solid rgba(212,160,85,0.22);
+      border-radius:28px;
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      text-align:center;
+      position:relative;
+    }
+    .testi-card::before{
+      content:"";position:absolute;inset:0;border-radius:inherit;
+      background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent 50%);
+      pointer-events:none;
+    }
+    .testi-quote-mark{
+      font-family:'Cormorant Garamond',serif;
+      font-size:96px;line-height:.2;
+      color:var(--coral);opacity:.45;
+      display:block;margin-bottom:22px;
+      user-select:none;
+    }
+    .testi-card blockquote{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:clamp(19px,2.8vw,26px);
+      color:var(--gold-soft);line-height:1.7;
+      margin:0;
+    }
+    .testi-card .testi-line{
+      display:block;width:52px;height:2px;
+      background:linear-gradient(90deg,var(--coral),var(--gold));
+      border-radius:2px;margin:26px auto 0;
+    }
+    @media(max-width:600px){
+      .testi-card{padding:32px 24px 28px;}
+      .testi-card blockquote{font-size:18px;}
+    }
+
+    /* Counter — 1 / 5 */
+    .carousel-counter{
+      font-family:'Frank Ruhl Libre',serif;
+      font-size:14px;color:var(--cream-dim);
+      margin-top:18px;letter-spacing:.08em;
+    }
+    .carousel-counter span{color:var(--gold-soft);font-weight:700;}
+
+    /* Arrow buttons */
+    .carousel-nav{
+      display:flex;gap:12px;justify-content:center;
+      margin-top:22px;
+    }
+    .carousel-btn{
+      width:48px;height:48px;border-radius:50%;
+      background:rgba(212,160,85,0.08);
+      border:1.5px solid rgba(212,160,85,0.35);
+      color:var(--gold-soft);font-size:22px;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .3s ease,border-color .3s ease,transform .3s ease;
+      -webkit-appearance:none;appearance:none;
+      flex-shrink:0;
+    }
+    .carousel-btn:hover{
+      background:rgba(212,160,85,0.18);
+      border-color:var(--gold);
+      transform:scale(1.1);
     }
 
     /* Dots */
-    .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:28px;}
-    .carousel-dot{
-      width:8px;height:8px;border-radius:50%;
-      background:rgba(212,160,85,0.25);
-      cursor:pointer;transition:all .35s ease;border:none;padding:0;
+    .carousel-dots{
+      display:flex;gap:8px;align-items:center;justify-content:center;
+      flex:1;
     }
-    .carousel-dot.active{background:var(--gold);transform:scale(1.35);}
-    .carousel-dot:hover{background:rgba(212,160,85,0.55);}
+    .carousel-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:rgba(212,160,85,0.22);
+      cursor:pointer;
+      transition:background .35s ease,transform .35s ease,width .35s ease;
+      border:none;padding:0;flex-shrink:0;
+    }
+    .carousel-dot.active{
+      background:var(--gold);
+      width:22px;border-radius:4px;
+      transform:none;
+    }
+    .carousel-dot:hover{background:rgba(212,160,85,0.5);}
 
     /* Final CTA */
     .final{
@@ -502,10 +564,8 @@
       </div>
       <div class="hero-cta">
         <a href="https://docs.google.com/forms/d/1NW-JU0KEVLwOYfeQSniM5SIMNAINm4V__S8_JkQTWVY/viewform" class="btn" target="_blank" rel="noopener">מלאו טופס הרשמה</a>
-        <a href="#dates" class="btn ghost">לבחירת מועד</a>
       </div>
     </div>
-    <div class="scroll-hint">גללו למטה<i></i></div>
   </header>
 
   <!-- ===== INTRO ===== -->
@@ -732,55 +792,57 @@
         <div class=”rule”></div>
       </div>
       <div class=”carousel-wrap reveal d1”>
-        <button class=”carousel-btn prev” aria-label=”הקודם”>&#8250;</button>
         <div class=”carousel-track”>
           <div class=”carousel-slides” id=”carouselSlides”>
 
             <div class=”carousel-slide”>
-              <blockquote>
-                תודה לכן על היצירה המופלאה של אתמול בערב.<br>
-                תודה לכולנו על מרחב קסום ואוהב, שהרגיש כל כך בטוח ואיפשר פשוט לבוא אליו בדיוק כמו שאני.
-                זה היה כל כך נחוץ וממלא, ממש כמו בועה של שקט בתוך כל הטירוף.
-              </blockquote>
+              <div class=”testi-card”>
+                <span class=”testi-quote-mark”>”</span>
+                <blockquote>תודה לכן על היצירה המופלאה של אתמול בערב. תודה לכולנו על מרחב קסום ואוהב, שהרגיש כל כך בטוח ואיפשר פשוט לבוא אליו בדיוק כמו שאני. זה היה כל כך נחוץ וממלא, ממש כמו בועה של שקט בתוך כל הטירוף.</blockquote>
+                <span class=”testi-line”></span>
+              </div>
             </div>
 
             <div class=”carousel-slide”>
-              <blockquote>
-                תודה רבה על מקדש קסום ומהנה.<br>
-                אהבתי מאוד את המשחקיות ואת ההדרגתיות.
-                הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף...
-                תודה לגברים ולנשים שאפשרו וגם לאלו ששמרו על הגבול האישי שלהם.
-              </blockquote>
+              <div class=”testi-card”>
+                <span class=”testi-quote-mark”>”</span>
+                <blockquote>תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו וגם לאלו ששמרו על הגבול האישי שלהם.</blockquote>
+                <span class=”testi-line”></span>
+              </div>
             </div>
 
             <div class=”carousel-slide”>
-              <blockquote>
-                וואו — לי זו הייתה חוויה מתקנת הכי מדליקה שיש.<br>
-                תודה על ההכנה וההכוונה לחיבור עצמי ולדיוק.
-                אין ספק — אנחנו עוד נפגש.
-              </blockquote>
+              <div class=”testi-card”>
+                <span class=”testi-quote-mark”>”</span>
+                <blockquote>וואו — לי זו הייתה חוויה מתקנת הכי מדליקה שיש. תודה על ההכנה וההכוונה לחיבור עצמי ולדיוק. אין ספק — אנחנו עוד נפגש.</blockquote>
+                <span class=”testi-line”></span>
+              </div>
             </div>
 
             <div class=”carousel-slide”>
-              <blockquote>
-                רציתי לומר שוב תודה על תשומת הלב וההחזקה.<br>
-                זה עזר לי מאוד בחלקים שהיו יותר מאתגרים עבורי.
-              </blockquote>
+              <div class=”testi-card”>
+                <span class=”testi-quote-mark”>”</span>
+                <blockquote>רציתי לומר שוב תודה על תשומת הלב וההחזקה. זה עזר לי מאוד בחלקים שהיו יותר מאתגרים עבורי.</blockquote>
+                <span class=”testi-line”></span>
+              </div>
             </div>
 
             <div class=”carousel-slide”>
-              <blockquote>
-                תודה רבה על מקדש קסום ומהנה.<br>
-                אהבתי מאוד את המשחקיות ואת ההדרגתיות.
-                הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף...
-                תודה לגברים ולנשים שאפשרו וגם לאלו ששמרו על הגבול האישי שלהם.
-              </blockquote>
+              <div class=”testi-card”>
+                <span class=”testi-quote-mark”>”</span>
+                <blockquote>תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו וגם לאלו ששמרו על הגבול האישי שלהם.</blockquote>
+                <span class=”testi-line”></span>
+              </div>
             </div>
 
           </div>
         </div>
-        <button class=”carousel-btn next” aria-label=”הבא”>&#8249;</button>
-        <div class=”carousel-dots” id=”carouselDots”></div>
+        <div class=”carousel-nav”>
+          <button class=”carousel-btn” id=”cPrev” aria-label=”הקודם”>&#8249;</button>
+          <div class=”carousel-dots” id=”carouselDots”></div>
+          <button class=”carousel-btn” id=”cNext” aria-label=”הבא”>&#8250;</button>
+        </div>
+        <div class=”carousel-counter”><span id=”cCur”>1</span> / <span id=”cTotal”>5</span></div>
       </div>
     </div>
   </section>
@@ -907,50 +969,59 @@
 
     /* Testimonials carousel */
     (function(){
-      const slides = document.getElementById('carouselSlides');
-      const dotsWrap = document.getElementById('carouselDots');
-      if(!slides) return;
-      const total = slides.children.length;
-      let cur = 0;
-      let autoTimer;
+      const belt   = document.getElementById('carouselSlides');
+      const dots   = document.getElementById('carouselDots');
+      const btnP   = document.getElementById('cPrev');
+      const btnN   = document.getElementById('cNext');
+      const elCur  = document.getElementById('cCur');
+      const elTot  = document.getElementById('cTotal');
+      if(!belt) return;
 
-      // Build dots
+      const total = belt.children.length;
+      let cur = 0, autoTimer, startX = 0, dragging = false;
+
+      elTot.textContent = total;
+
+      /* build dots */
       for(let i = 0; i < total; i++){
         const d = document.createElement('button');
         d.className = 'carousel-dot' + (i===0?' active':'');
-        d.setAttribute('aria-label','מעבר לביקורת '+(i+1));
         d.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(d);
+        dots.appendChild(d);
       }
 
-      function goTo(n){
-        cur = (n + total) % total;
-        slides.style.transform = 'translateX(-' + (cur * 100) + '%)';
-        dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+      function goTo(n, instant){
+        cur = ((n % total) + total) % total;
+        if(instant) belt.style.transition = 'none';
+        belt.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        if(instant) requestAnimationFrame(() => { belt.style.transition = ''; });
+        dots.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+        elCur.textContent = cur + 1;
         resetAuto();
       }
 
       function resetAuto(){
         clearInterval(autoTimer);
-        autoTimer = setInterval(() => goTo(cur + 1), 5500);
+        autoTimer = setInterval(() => goTo(cur + 1), 5800);
       }
 
-      // RTL: "prev" = goes to previous (right arrow visually = older)
-      document.querySelector('.carousel-btn.prev').addEventListener('click', () => goTo(cur - 1));
-      document.querySelector('.carousel-btn.next').addEventListener('click', () => goTo(cur + 1));
+      btnP.addEventListener('click', () => goTo(cur - 1));
+      btnN.addEventListener('click', () => goTo(cur + 1));
 
-      // Touch/swipe — RTL aware: swipe right = prev, swipe left = next
-      let startX = 0;
-      slides.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-      slides.addEventListener('touchend', e => {
+      /* touch swipe */
+      belt.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dragging=true; }, {passive:true});
+      belt.addEventListener('touchend',   e => {
+        if(!dragging) return; dragging=false;
         const dx = e.changedTouches[0].clientX - startX;
-        if(Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+        if(Math.abs(dx) > 44) goTo(cur + (dx < 0 ? 1 : -1));
       });
 
-      // Keyboard
-      document.addEventListener('keydown', e => {
-        if(e.key==='ArrowLeft') goTo(cur + 1);
-        if(e.key==='ArrowRight') goTo(cur - 1);
+      /* mouse drag (desktop) */
+      belt.addEventListener('mousedown', e => { startX = e.clientX; dragging=true; });
+      window.addEventListener('mouseup', e => {
+        if(!dragging) return; dragging=false;
+        const dx = e.clientX - startX;
+        if(Math.abs(dx) > 44) goTo(cur + (dx < 0 ? 1 : -1));
       });
 
       resetAuto();
