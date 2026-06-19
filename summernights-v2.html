@@ -351,10 +351,16 @@
     .testi .glow{display:none;}
     .carousel-wrap{position:relative;max-width:860px;margin:0 auto;}
     .carousel-track{overflow:hidden;position:relative;}
-    .carousel-slides{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+    .carousel-slides{
+      display:flex;
+      direction:ltr; /* force LTR so translateX works correctly inside RTL page */
+      transition:transform .6s cubic-bezier(.4,0,.2,1);
+      will-change:transform;
+    }
     .carousel-slide{
       min-width:100%;padding:0 16px;
       display:flex;flex-direction:column;align-items:center;
+      direction:rtl; /* restore RTL for text inside each slide */
     }
     .carousel-slide blockquote{
       font-family:'Cormorant Garamond',serif;font-style:italic;
@@ -401,9 +407,10 @@
     .carousel-btn.prev{right:calc(100% + 14px);}
     .carousel-btn.next{left:calc(100% + 14px);}
     @media(max-width:1060px){
-      .carousel-btn.prev{right:auto;left:0;top:auto;bottom:-60px;transform:none;}
-      .carousel-btn.next{left:auto;right:0;top:auto;bottom:-60px;transform:none;}
-      .carousel-wrap{padding-bottom:72px;}
+      .carousel-btn{top:auto;transform:none;bottom:-58px;}
+      .carousel-btn.prev{right:auto;left:12px;}
+      .carousel-btn.next{left:auto;right:12px;}
+      .carousel-wrap{padding-bottom:76px;}
     }
 
     /* Dots */
@@ -918,7 +925,7 @@
 
       function goTo(n){
         cur = (n + total) % total;
-        slides.style.transform = 'translateX(' + (cur * 100) + '%)';
+        slides.style.transform = 'translateX(-' + (cur * 100) + '%)';
         dotsWrap.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
         resetAuto();
       }
@@ -928,21 +935,22 @@
         autoTimer = setInterval(() => goTo(cur + 1), 5500);
       }
 
+      // RTL: "prev" = goes to previous (right arrow visually = older)
       document.querySelector('.carousel-btn.prev').addEventListener('click', () => goTo(cur - 1));
       document.querySelector('.carousel-btn.next').addEventListener('click', () => goTo(cur + 1));
 
-      // Touch/swipe support
+      // Touch/swipe — RTL aware: swipe right = prev, swipe left = next
       let startX = 0;
       slides.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
       slides.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - startX;
-        if(Math.abs(dx) > 40) goTo(cur + (dx > 0 ? -1 : 1));
+        if(Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
       });
 
       // Keyboard
       document.addEventListener('keydown', e => {
-        if(e.key==='ArrowLeft') goTo(cur+1);
-        if(e.key==='ArrowRight') goTo(cur-1);
+        if(e.key==='ArrowLeft') goTo(cur + 1);
+        if(e.key==='ArrowRight') goTo(cur - 1);
       });
 
       resetAuto();
