@@ -685,29 +685,57 @@
     </div>
   </section>
 
-    <!-- ===== REVIEWS CAROUSEL ===== -->
+  <!-- ===== REVIEWS ===== -->
   <section class="reviews pad">
     <div class="wrap">
       <div class="head reveal">
         <h2>מה אומרים המשתתפים</h2>
-        <p class="sub">חוויות אמיתיות מהמקדש</p>
         <div class="rule"></div>
       </div>
       <div class="rv-wrap reveal d1">
-        <div id="rvCard" class="rv-card">
+
+        <div class="rv-card" id="rv0">
           <span class="rv-qm">"</span>
-          <p class="rv-text" id="rvText"></p>
+          <p class="rv-text">תודה רבה על מקדש קסום ומהנה.<br>
+          אהבתי מאוד את המשחקיות ואת ההדרגתיות.<br>
+          הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף...<br>
+          תודה לגברים ולנשים שאפשרו וגם לאלו ששמרו על הגבול האישי שלהם.</p>
           <span class="rv-line"></span>
         </div>
-        <div class="rv-arrows">
-          <button class="rv-arrow" id="rvPrev" aria-label="הקודם">&#8249;</button>
-          <div class="rv-dots" id="rvDots"></div>
-          <button class="rv-arrow" id="rvNext" aria-label="הבא">&#8250;</button>
+
+        <div class="rv-card" id="rv1" style="display:none">
+          <span class="rv-qm">"</span>
+          <p class="rv-text">תודה לכן על היצירה המופלאה של אתמול בערב.<br>
+          תודה לכולנו על מרחב קסום ואוהב, שהרגיש כל כך בטוח ואיפשר פשוט לבוא אליו בדיוק כמו שאני.<br>
+          זה היה כל כך נחוץ וממלא, ממש כמו בועה של שקט בתוך כל הטירוף.</p>
+          <span class="rv-line"></span>
         </div>
-        <div class="rv-counter" id="rvCounter"></div>
+
+        <div class="rv-arrows">
+          <button class="rv-arrow" onclick="rvGo(-1)" aria-label="הקודם">&#8249;</button>
+          <div class="rv-dots">
+            <button class="rv-dot on" id="rvd0" onclick="rvGo(0)"></button>
+            <button class="rv-dot"    id="rvd1" onclick="rvGo(1)"></button>
+          </div>
+          <button class="rv-arrow" onclick="rvGo(1)" aria-label="הבא">&#8250;</button>
+        </div>
+        <div class="rv-counter"><span id="rvCur">1</span> / 2</div>
+
       </div>
     </div>
   </section>
+  <script>
+    var _rvCur=0, _rvTotal=2;
+    function rvGo(v){
+      _rvCur = (Math.abs(v)===1) ? (_rvCur+v+_rvTotal)%_rvTotal : v;
+      for(var i=0;i<_rvTotal;i++){
+        var c=document.getElementById('rv'+i), d=document.getElementById('rvd'+i);
+        if(c) c.style.display = i===_rvCur?'block':'none';
+        if(d) d.classList.toggle('on', i===_rvCur);
+      }
+      document.getElementById('rvCur').textContent = _rvCur+1;
+    }
+  </script>
 
 
   <footer>
@@ -801,57 +829,7 @@
     }
     addTilt('.event'); addTilt('.person');
 
-        /* Reviews carousel */
-    (function(){
-      var reviews = [
-        "תודה לכן על היצירה המופלאה של אתמול בערב. מרחב קסום ואוהב שהרגיש כל כך בטוח ואיפשר פשוט לבוא אליו בדיוק כמו שאני. זה היה כל כך נחוץ וממלא — ממש כמו בועה של שקט בתוך כל הטירוף.",
-        "תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו, וגם לאלו ששמרו על הגבול האישי שלהם.",
-        "וואו — לי זו הייתה חוויה מתקנת הכי מדליקה שיש. תודה על ההכנה וההכוונה לחיבור עצמי ולדיוק. אין ספק — אנחנו עוד נפגש.",
-        "רציתי לומר שוב תודה על תשומת הלב וההחזקה. זה עזר לי מאוד בחלקים שהיו יותר מאתגרים עבורי.",
-        "תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו, וגם לאלו ששמרו על הגבול האישי שלהם."
-      ];
-      var cur = 0;
-      var textEl = document.getElementById('rvText');
-      var dotsEl = document.getElementById('rvDots');
-      var cntEl  = document.getElementById('rvCounter');
-      var card   = document.getElementById('rvCard');
-      if(!textEl) return;
-
-      reviews.forEach(function(_,i){
-        var d = document.createElement('button');
-        d.className = 'rv-dot' + (i===0?' on':'');
-        d.addEventListener('click', function(){ go(i); });
-        dotsEl.appendChild(d);
-      });
-
-      function go(n){
-        cur = ((n % reviews.length) + reviews.length) % reviews.length;
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(10px)';
-        setTimeout(function(){
-          textEl.textContent = reviews[cur];
-          card.style.transition = 'opacity .4s ease, transform .4s ease';
-          card.style.opacity = '1';
-          card.style.transform = 'none';
-        }, 180);
-        dotsEl.querySelectorAll('.rv-dot').forEach(function(d,i){ d.classList.toggle('on', i===cur); });
-        cntEl.textContent = (cur+1) + ' / ' + reviews.length;
-      }
-
-      document.getElementById('rvPrev').addEventListener('click', function(){ go(cur-1); });
-      document.getElementById('rvNext').addEventListener('click', function(){ go(cur+1); });
-
-      // touch swipe
-      var sx = 0;
-      card.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
-      card.addEventListener('touchend', function(e){
-        var dx = e.changedTouches[0].clientX - sx;
-        if(Math.abs(dx) > 44) go(cur + (dx < 0 ? 1 : -1));
-      });
-
-      go(0);
-      setInterval(function(){ go(cur+1); }, 6000);
-    })();
+        
 
     /* Cursor sparkles */
     (function(){
