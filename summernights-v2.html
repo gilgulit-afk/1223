@@ -344,138 +344,48 @@
     .a p{margin:0;padding:0 24px 22px;color:var(--cream-dim);font-size:15.5px;line-height:1.8;}
     @keyframes faqOpen{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:none;}}
 
-    /* Testimonial */
-    /* ── Testimonials carousel ── */
-    .testi{
+        /* Reviews carousel */
+    .reviews{
+      background:linear-gradient(180deg,#1c0d2e,#26112c);
       position:relative;overflow:hidden;text-align:center;
-      padding:0 !important;
     }
-    /* Full-bleed atmospheric background image */
-    .testi-bg{
-      position:absolute;inset:0;z-index:0;
-      background:
-        url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1400&q=80')
-        center/cover no-repeat;
+    .reviews::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(ellipse 700px 400px at 50% 110%,rgba(232,128,106,.1),transparent 65%);
     }
-    .testi-bg::after{
-      content:"";position:absolute;inset:0;
-      background:
-        linear-gradient(180deg,
-          rgba(13,7,21,0.72) 0%,
-          rgba(28,10,46,0.80) 40%,
-          rgba(38,17,44,0.84) 100%
-        );
-    }
-    .testi .glow{display:none;}
-    .testi .wrap{position:relative;z-index:1;padding-top:clamp(60px,9vw,110px);padding-bottom:clamp(60px,9vw,110px);}
-
-    .carousel-wrap{
-      position:relative;
-      max-width:720px;
-      margin:0 auto;
-    }
-
-    /* Stage — fixed height, clips overflow */
-    .carousel-stage{
-      position:relative;
-      width:100%;
-    }
-
-    /* One slide visible at a time */
-    .carousel-slide{
-      display:none;
-    }
-    .carousel-slide.active{
-      display:block;
-      animation:slideFadeIn .45s ease forwards;
-    }
-    @keyframes slideFadeIn{
-      from{opacity:0;transform:translateY(14px);}
-      to{opacity:1;transform:none;}
-    }
-
-    /* The quote card */
-    .testi-card{
-      width:100%;
-      padding:32px 40px 28px;
-      background:rgba(20,8,36,0.6);
-      border:1px solid rgba(212,160,85,0.25);
-      border-radius:22px;
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      box-shadow:0 12px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    .rv-wrap{position:relative;max-width:700px;margin:0 auto;}
+    .rv-card{
+      padding:36px 44px 32px;
+      background:linear-gradient(145deg,rgba(45,12,65,.75),rgba(22,8,38,.85));
+      border:1px solid rgba(212,160,85,.28);
+      border-radius:24px;
+      box-shadow:0 16px 56px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.05);
       text-align:center;
     }
-    .testi-quote-mark{
-      font-family:'Cormorant Garamond',serif;
-      font-size:64px;line-height:.1;
-      color:var(--coral);opacity:.55;
-      display:block;margin-bottom:14px;
-      user-select:none;
+    .rv-qm{
+      font-family:'Cormorant Garamond',serif;font-size:60px;line-height:.1;
+      color:var(--coral);opacity:.5;display:block;margin-bottom:16px;user-select:none;
     }
-    .testi-card blockquote{
+    .rv-text{
       font-family:'Cormorant Garamond',serif;font-style:italic;
-      font-size:clamp(16px,2.4vw,22px);
-      color:var(--gold-soft);line-height:1.65;
-      margin:0;
+      font-size:clamp(17px,2.5vw,23px);color:var(--gold-soft);line-height:1.7;margin:0;
     }
-    .testi-card .testi-line{
-      display:block;width:40px;height:2px;
-      background:linear-gradient(90deg,var(--coral),var(--gold));
-      border-radius:2px;margin:18px auto 0;
-    }
-    @media(max-width:560px){
-      .testi-card{padding:24px 20px 20px;}
-      .testi-card blockquote{font-size:15px;}
-      .testi-quote-mark{font-size:48px;}
-    }
-
-    /* Left / right arrows — floating on sides */
-    .carousel-btn{
-      position:absolute;top:50%;
-      transform:translateY(-50%);
-      width:44px;height:44px;border-radius:50%;
-      background:rgba(212,160,85,0.12);
-      border:1.5px solid rgba(212,160,85,0.4);
-      color:var(--gold-soft);font-size:22px;
-      cursor:pointer;z-index:10;
+    .rv-line{display:block;width:44px;height:2px;background:linear-gradient(90deg,var(--coral),var(--gold));border-radius:2px;margin:20px auto 0;}
+    @media(max-width:560px){.rv-card{padding:26px 22px 22px;}.rv-text{font-size:16px;}}
+    .rv-arrows{display:flex;gap:14px;justify-content:center;margin-top:22px;}
+    .rv-arrow{
+      width:46px;height:46px;border-radius:50%;
+      background:rgba(212,160,85,.1);border:1.5px solid rgba(212,160,85,.38);
+      color:var(--gold-soft);font-size:22px;cursor:pointer;
       display:flex;align-items:center;justify-content:center;
-      transition:background .3s,border-color .3s,transform .3s;
+      transition:background .3s,border-color .3s,transform .25s;
       -webkit-appearance:none;appearance:none;
     }
-    .carousel-btn:hover{background:rgba(212,160,85,0.25);border-color:var(--gold);transform:translateY(-50%) scale(1.1);}
-    #cPrev{right:-58px;}
-    #cNext{left:-58px;}
-    @media(max-width:860px){
-      #cPrev{right:-2px;}
-      #cNext{left:-2px;}
-      .carousel-wrap{padding:0 46px;}
-    }
-    @media(max-width:480px){
-      #cPrev{right:0;}
-      #cNext{left:0;}
-      .carousel-wrap{padding:0 40px;}
-    }
-
-    /* Bottom nav row */
-    .carousel-nav{
-      display:flex;gap:10px;align-items:center;justify-content:center;
-      margin-top:20px;
-    }
-    .carousel-dots{display:flex;gap:7px;align-items:center;}
-    .carousel-dot{
-      width:7px;height:7px;border-radius:50%;
-      background:rgba(212,160,85,0.25);
-      cursor:pointer;border:none;padding:0;
-      transition:background .3s,width .3s,border-radius .3s;flex-shrink:0;
-    }
-    .carousel-dot.active{background:var(--gold);width:20px;border-radius:4px;}
-    .carousel-dot:hover{background:rgba(212,160,85,0.55);}
-    .carousel-counter{
-      font-size:13px;color:var(--cream-dim);letter-spacing:.1em;
-    }
-    .carousel-counter span{color:var(--gold-soft);font-weight:700;}
-
+    .rv-arrow:hover{background:rgba(212,160,85,.22);border-color:var(--gold);transform:scale(1.12);}
+    .rv-dots{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:16px;}
+    .rv-dot{width:7px;height:7px;border-radius:50%;background:rgba(212,160,85,.22);cursor:pointer;border:none;padding:0;transition:background .3s,width .3s,border-radius .3s;}
+    .rv-dot.on{background:var(--gold);width:20px;border-radius:4px;}
+    .rv-counter{font-size:12px;color:var(--cream-dim);letter-spacing:.1em;margin-top:10px;}
     /* Final CTA */
     .final{
       background:
@@ -775,67 +685,26 @@
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS CAROUSEL ===== -->
-  <section class=”testi”>
-    <div class=”testi-bg”></div>
-    <div class=”wrap”>
-      <div class=”head reveal”>
+    <!-- ===== REVIEWS CAROUSEL ===== -->
+  <section class="reviews pad">
+    <div class="wrap">
+      <div class="head reveal">
         <h2>מה אומרים המשתתפים</h2>
-        <p class=”sub”>חוויות אמיתיות מהמקדש</p>
-        <div class=”rule”></div>
+        <p class="sub">חוויות אמיתיות מהמקדש</p>
+        <div class="rule"></div>
       </div>
-      <div class=”carousel-wrap reveal d1”>
-        <button class=”carousel-btn” id=”cPrev” aria-label=”הקודם”>&#8249;</button>
-        <button class=”carousel-btn” id=”cNext” aria-label=”הבא”>&#8250;</button>
-
-        <div class=”carousel-stage” id=”carouselStage”>
-
-          <div class=”carousel-slide active”>
-            <div class=”testi-card”>
-              <span class=”testi-quote-mark”>”</span>
-              <blockquote>תודה לכן על היצירה המופלאה של אתמול בערב. מרחב קסום ואוהב שהרגיש כל כך בטוח ואיפשר פשוט לבוא אליו בדיוק כמו שאני. זה היה כל כך נחוץ וממלא — ממש כמו בועה של שקט בתוך כל הטירוף.</blockquote>
-              <span class=”testi-line”></span>
-            </div>
-          </div>
-
-          <div class=”carousel-slide”>
-            <div class=”testi-card”>
-              <span class=”testi-quote-mark”>”</span>
-              <blockquote>תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו, וגם לאלו ששמרו על הגבול האישי שלהם.</blockquote>
-              <span class=”testi-line”></span>
-            </div>
-          </div>
-
-          <div class=”carousel-slide”>
-            <div class=”testi-card”>
-              <span class=”testi-quote-mark”>”</span>
-              <blockquote>וואו — לי זו הייתה חוויה מתקנת הכי מדליקה שיש. תודה על ההכנה וההכוונה לחיבור עצמי ולדיוק. אין ספק — אנחנו עוד נפגש.</blockquote>
-              <span class=”testi-line”></span>
-            </div>
-          </div>
-
-          <div class=”carousel-slide”>
-            <div class=”testi-card”>
-              <span class=”testi-quote-mark”>”</span>
-              <blockquote>רציתי לומר שוב תודה על תשומת הלב וההחזקה. זה עזר לי מאוד בחלקים שהיו יותר מאתגרים עבורי.</blockquote>
-              <span class=”testi-line”></span>
-            </div>
-          </div>
-
-          <div class=”carousel-slide”>
-            <div class=”testi-card”>
-              <span class=”testi-quote-mark”>”</span>
-              <blockquote>תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו, וגם לאלו ששמרו על הגבול האישי שלהם.</blockquote>
-              <span class=”testi-line”></span>
-            </div>
-          </div>
-
+      <div class="rv-wrap reveal d1">
+        <div id="rvCard" class="rv-card">
+          <span class="rv-qm">"</span>
+          <p class="rv-text" id="rvText"></p>
+          <span class="rv-line"></span>
         </div>
-
-        <div class=”carousel-nav”>
-          <div class=”carousel-dots” id=”carouselDots”></div>
-          <div class=”carousel-counter”><span id=”cCur”>1</span> / <span id=”cTotal”>5</span></div>
+        <div class="rv-arrows">
+          <button class="rv-arrow" id="rvPrev" aria-label="הקודם">&#8249;</button>
+          <div class="rv-dots" id="rvDots"></div>
+          <button class="rv-arrow" id="rvNext" aria-label="הבא">&#8250;</button>
         </div>
+        <div class="rv-counter" id="rvCounter"></div>
       </div>
     </div>
   </section>
@@ -932,55 +801,56 @@
     }
     addTilt('.event'); addTilt('.person');
 
-    /* Testimonials carousel — absolute-position fade */
+        /* Reviews carousel */
     (function(){
-      const stage  = document.getElementById('carouselStage');
-      const dots   = document.getElementById('carouselDots');
-      const btnP   = document.getElementById('cPrev');
-      const btnN   = document.getElementById('cNext');
-      const elCur  = document.getElementById('cCur');
-      const elTot  = document.getElementById('cTotal');
-      if(!stage) return;
+      var reviews = [
+        "תודה לכן על היצירה המופלאה של אתמול בערב. מרחב קסום ואוהב שהרגיש כל כך בטוח ואיפשר פשוט לבוא אליו בדיוק כמו שאני. זה היה כל כך נחוץ וממלא — ממש כמו בועה של שקט בתוך כל הטירוף.",
+        "תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו, וגם לאלו ששמרו על הגבול האישי שלהם.",
+        "וואו — לי זו הייתה חוויה מתקנת הכי מדליקה שיש. תודה על ההכנה וההכוונה לחיבור עצמי ולדיוק. אין ספק — אנחנו עוד נפגש.",
+        "רציתי לומר שוב תודה על תשומת הלב וההחזקה. זה עזר לי מאוד בחלקים שהיו יותר מאתגרים עבורי.",
+        "תודה רבה על מקדש קסום ומהנה. אהבתי מאוד את המשחקיות ואת ההדרגתיות. הפלייליסט היה מטורף וכל כך התאים לכל תרגיל וגם למרחב בסוף... תודה לגברים ולנשים שאפשרו, וגם לאלו ששמרו על הגבול האישי שלהם."
+      ];
+      var cur = 0;
+      var textEl = document.getElementById('rvText');
+      var dotsEl = document.getElementById('rvDots');
+      var cntEl  = document.getElementById('rvCounter');
+      var card   = document.getElementById('rvCard');
+      if(!textEl) return;
 
-      const slides = Array.from(stage.querySelectorAll('.carousel-slide'));
-      const total  = slides.length;
-      let cur = 0, autoTimer, startX = 0;
-
-      elTot.textContent = total;
-
-      /* build dots */
-      for(let i = 0; i < total; i++){
-        const d = document.createElement('button');
-        d.className = 'carousel-dot' + (i===0?' active':'');
-        d.addEventListener('click', () => goTo(i));
-        dots.appendChild(d);
-      }
-
-      function goTo(n){
-        slides[cur].classList.remove('active');
-        cur = ((n % total) + total) % total;
-        slides[cur].classList.add('active');
-        dots.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===cur));
-        elCur.textContent = cur + 1;
-        resetAuto();
-      }
-
-      function resetAuto(){
-        clearInterval(autoTimer);
-        autoTimer = setInterval(() => goTo(cur + 1), 5800);
-      }
-
-      btnP.addEventListener('click', () => goTo(cur - 1));
-      btnN.addEventListener('click', () => goTo(cur + 1));
-
-      /* swipe */
-      stage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-      stage.addEventListener('touchend',   e => {
-        const dx = e.changedTouches[0].clientX - startX;
-        if(Math.abs(dx) > 44) goTo(cur + (dx < 0 ? 1 : -1));
+      reviews.forEach(function(_,i){
+        var d = document.createElement('button');
+        d.className = 'rv-dot' + (i===0?' on':'');
+        d.addEventListener('click', function(){ go(i); });
+        dotsEl.appendChild(d);
       });
 
-      resetAuto();
+      function go(n){
+        cur = ((n % reviews.length) + reviews.length) % reviews.length;
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(10px)';
+        setTimeout(function(){
+          textEl.textContent = reviews[cur];
+          card.style.transition = 'opacity .4s ease, transform .4s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'none';
+        }, 180);
+        dotsEl.querySelectorAll('.rv-dot').forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+        cntEl.textContent = (cur+1) + ' / ' + reviews.length;
+      }
+
+      document.getElementById('rvPrev').addEventListener('click', function(){ go(cur-1); });
+      document.getElementById('rvNext').addEventListener('click', function(){ go(cur+1); });
+
+      // touch swipe
+      var sx = 0;
+      card.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+      card.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - sx;
+        if(Math.abs(dx) > 44) go(cur + (dx < 0 ? 1 : -1));
+      });
+
+      go(0);
+      setInterval(function(){ go(cur+1); }, 6000);
     })();
 
     /* Cursor sparkles */
