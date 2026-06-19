@@ -379,26 +379,19 @@
     .carousel-stage{
       position:relative;
       width:100%;
-      min-height:220px;
     }
 
-    /* Each slide stacked absolutely */
+    /* One slide visible at a time */
     .carousel-slide{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      opacity:0;
-      transform:translateY(12px);
-      transition:opacity .5s ease, transform .5s ease;
-      pointer-events:none;
+      display:none;
     }
     .carousel-slide.active{
-      opacity:1;
-      transform:none;
-      pointer-events:auto;
-      position:relative; /* active slide expands stage height */
+      display:block;
+      animation:slideFadeIn .45s ease forwards;
+    }
+    @keyframes slideFadeIn{
+      from{opacity:0;transform:translateY(14px);}
+      to{opacity:1;transform:none;}
     }
 
     /* The quote card */
@@ -847,29 +840,6 @@
     </div>
   </section>
 
-  <!-- ===== FINAL CTA ===== -->
-  <section class="final pad" id="register">
-    <div class="wrap">
-      <div class="head reveal">
-        <h2>מעדיפים שנחזור אליכם?</h2>
-        <p class="sub">השאירו פרטים ונחזור אליכם · או הירשמו ישירות בוואטסאפ למעלה</p>
-        <div class="rule"></div>
-      </div>
-      <div class="when-strip reveal d1">
-        <span>🗓️ 16.07.26</span>
-        <span>🗓️ 13.08.26</span>
-        <span>🗓️ 10.09.26</span>
-      </div>
-
-      <p class="note reveal d2">
-        הטופס לא נטען?
-        <a href="https://docs.google.com/forms/d/1NW-JU0KEVLwOYfeQSniM5SIMNAINm4V__S8_JkQTWVY/viewform" target="_blank" rel="noopener" style="color:var(--gold-soft);font-weight:700;">לחצו כאן לפתיחה בחלון חדש</a>.
-        <br>* ההרשמה מותנית במילוי שאלון ובמידת הצורך בשיחה טלפונית קצרה.
-        מעדיפים לדבר? וואטסאפ:
-        <a href="https://wa.me/972544799145" target="_blank" rel="noopener" style="color:var(--gold-soft);font-weight:700;">054-479-9145</a>
-      </p>
-    </div>
-  </section>
 
   <footer>
     <span class="big">SUMMER NIGHTS</span>
