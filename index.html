@@ -76,6 +76,74 @@
     /* Canvas stars */
     #starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.65;}
 
+    /* Anchor offset for fixed nav */
+    section[id],header[id]{scroll-margin-top:82px;}
+
+    /* NAV */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px clamp(20px,5vw,54px);
+      transition:background .4s ease,backdrop-filter .4s ease,padding .4s ease,box-shadow .4s ease;
+    }
+    .nav.scrolled{
+      background:rgba(13,7,21,0.72);
+      backdrop-filter:blur(16px) saturate(1.25);
+      -webkit-backdrop-filter:blur(16px) saturate(1.25);
+      padding:11px clamp(20px,5vw,54px);
+      box-shadow:0 6px 30px rgba(0,0,0,0.35),0 1px 0 rgba(212,160,85,0.12);
+    }
+    .nav-brand{
+      display:flex;align-items:center;gap:11px;font-family:'Frank Ruhl Libre',serif;
+      font-weight:900;font-size:clamp(19px,3vw,25px);letter-spacing:.05em;white-space:nowrap;
+      background:linear-gradient(120deg,#fff8e8,#f0cc88 55%,#e8806a);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .nav-brand .n-moon{
+      width:24px;height:24px;border-radius:50%;flex:none;
+      background:radial-gradient(circle at 34% 30%,#fffbf0,#f7e098 50%,#d4a055);
+      box-shadow:0 0 16px rgba(255,200,95,0.5);
+    }
+    .nav-links{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px);list-style:none;}
+    .nav-links a{
+      position:relative;color:var(--cream);font-size:18px;font-weight:500;
+      opacity:.86;transition:opacity .3s ease,color .3s ease;padding:4px 0;
+    }
+    .nav-links a::after{
+      content:"";position:absolute;bottom:-2px;right:0;width:0;height:1.5px;
+      background:linear-gradient(90deg,var(--coral),var(--gold));transition:width .3s ease;
+    }
+    .nav-links a:hover{opacity:1;color:var(--gold-soft);}
+    .nav-links a:hover::after{width:100%;}
+    .nav-cta{
+      background:linear-gradient(135deg,var(--coral),var(--gold));color:#1e0e1a!important;
+      padding:10px 26px;border-radius:50px;font-weight:700;font-size:17px;opacity:1!important;
+      box-shadow:0 6px 20px rgba(232,128,106,0.34);
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+    .nav-cta::after{display:none;}
+    .nav-cta:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(232,128,106,0.5);color:#1e0e1a!important;}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+    .nav-toggle span{width:26px;height:2px;background:var(--gold-soft);border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+    .nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .nav.open .nav-toggle span:nth-child(2){opacity:0;}
+    .nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    @media(max-width:860px){
+      .nav-toggle{display:flex;}
+      .nav-links{
+        position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+        background:rgba(13,7,21,0.97);backdrop-filter:blur(18px);
+        -webkit-backdrop-filter:blur(18px);
+        max-height:0;overflow:hidden;transition:max-height .45s ease,padding .45s ease;
+        border-top:1px solid rgba(212,160,85,0.12);padding:0 clamp(20px,5vw,54px);
+      }
+      .nav.open .nav-links{max-height:440px;padding:12px clamp(20px,5vw,54px) 26px;}
+      .nav-links li{width:100%;border-bottom:1px solid rgba(255,255,255,0.05);}
+      .nav-links li:last-child{border-bottom:none;margin-top:12px;}
+      .nav-links a{display:block;padding:16px 0;font-size:20px;}
+      .nav-cta{display:inline-block;text-align:center;}
+    }
+
     /* HERO */
     .hero{
       position:relative;min-height:100vh;
@@ -419,8 +487,23 @@
 </head>
 <body>
 
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <a href="#top" class="nav-brand"><span class="n-moon"></span>SUMMER NIGHTS</a>
+    <button class="nav-toggle" id="navToggle" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">מה קורה</a></li>
+      <li><a href="#team">מי אנחנו</a></li>
+      <li><a href="#dates">מועדים</a></li>
+      <li><a href="#faq">שאלות</a></li>
+      <li><a href="#dates" class="nav-cta">הרשמה</a></li>
+    </ul>
+  </nav>
+
   <!-- ===== HERO ===== -->
-  <header class="hero">
+  <header class="hero" id="top">
     <div class="hero-bg"></div>
     <div class="orb orb-a"></div>
     <div class="orb orb-b"></div>
@@ -443,6 +526,7 @@
         <a href="#dates" class="btn ghost">לבחירת מועד</a>
       </div>
     </div>
+    <a href="#about" class="scroll-hint" aria-label="גללו למטה לפרטים">גללו<i></i></a>
   </header>
 
   <!-- ===== INTRO ===== -->
@@ -523,7 +607,7 @@
   </section>
 
   <!-- ===== TEAM ===== -->
-  <section class="team pad">
+  <section class="team pad" id="team">
     <div class="wrap">
       <div class="head reveal">
         <h2>מי אנחנו</h2>
@@ -622,7 +706,7 @@
   </section>
 
   <!-- ===== FAQ ===== -->
-  <section class="faq pad">
+  <section class="faq pad" id="faq">
     <div class="wrap">
       <div class="head reveal">
         <h2>שאלות נפוצות</h2>
@@ -826,6 +910,23 @@
         s.style.transform='translate('+((Math.random()-0.5)*20)+'px,'+((Math.random()-0.5)*20)+'px) scale('+(Math.random()+0.5)+')';
         setTimeout(() => { s.style.opacity='0'; }, 400);
       });
+    })();
+
+    /* Nav: frosted on scroll + mobile toggle */
+    (function(){
+      const nav=document.getElementById('nav');
+      const toggle=document.getElementById('navToggle');
+      const links=document.getElementById('navLinks');
+      if(!nav||!toggle||!links) return;
+      const onScroll=()=>{ nav.classList.toggle('scrolled', window.scrollY>40); };
+      window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+      toggle.addEventListener('click',()=>{
+        const open=nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded',open?'true':'false');
+      });
+      links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+        nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false');
+      }));
     })();
   </script>
 
