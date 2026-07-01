@@ -210,15 +210,17 @@
     }
     .band h2{color:var(--white)}
     .band .sec-head p{color:var(--blush)}
-    .band__grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:22px;max-width:900px;margin:44px auto 0;
+    .band__list{max-width:840px;margin:52px auto 0;display:flex;flex-direction:column}
+    .band__line{
+      position:relative;text-align:center;padding:34px 14px;
+      font-family:'Frank Ruhl Libre',serif;font-weight:500;line-height:1.5;
+      font-size:clamp(21px,3.1vw,29px);color:var(--blush-soft);
     }
-    .band__item{
-      background:rgba(255,250,245,.06);border:1px solid rgba(233,196,182,.18);
-      border-radius:20px;padding:26px 22px;text-align:right;
+    .band__line:not(:last-child){border-bottom:1px solid rgba(233,196,182,.2)}
+    .band__line::before{
+      content:"✦";display:block;color:var(--gold);
+      font-size:18px;margin-bottom:14px;opacity:.9;
     }
-    .band__item p{color:var(--blush-soft);font-size:17px}
     .band__note{
       margin-top:40px;font-family:'Frank Ruhl Libre',serif;
       font-size:clamp(19px,3vw,25px);color:var(--white);font-weight:500;
@@ -233,10 +235,11 @@
     /* ============ WHAT HAPPENS (cards) ============ */
     .happens{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%)}
     .cards{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;
+      display:flex;flex-direction:column;gap:20px;max-width:840px;margin:0 auto;
     }
     .card{
-      background:var(--white);border-radius:var(--radius);padding:34px 30px;
+      display:flex;gap:24px;align-items:center;
+      background:var(--white);border-radius:var(--radius);padding:28px 32px;
       box-shadow:var(--shadow-soft);border:1px solid rgba(74,22,38,.05);
       transition:.4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;
     }
@@ -248,12 +251,13 @@
     .card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
     .card:hover::before{transform:scaleY(1)}
     .card__ico{
-      width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+      width:60px;height:60px;flex-shrink:0;border-radius:16px;display:flex;align-items:center;justify-content:center;
       background:linear-gradient(135deg,var(--blush-soft),var(--blush));
-      color:var(--wine);margin-bottom:20px;
+      color:var(--wine);
     }
-    .card__ico svg{width:28px;height:28px}
-    .card h3{font-size:22px;color:var(--wine);margin-bottom:10px}
+    .card__ico svg{width:30px;height:30px}
+    .card__txt{flex:1}
+    .card h3{font-size:22px;color:var(--wine);margin-bottom:6px}
     .card p{color:var(--muted);font-size:17px}
     .happens__note{
       max-width:760px;margin:50px auto 0;text-align:center;
@@ -271,7 +275,7 @@
 
     /* ============ FOR WHOM ============ */
     .whom{background:var(--cream-2)}
-    .whom__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .whom__grid{display:flex;flex-direction:column;gap:16px;max-width:840px;margin:0 auto}
     .whom__item{
       display:flex;gap:16px;align-items:flex-start;
       background:var(--white);border-radius:18px;padding:22px 24px;
@@ -286,7 +290,7 @@
     .whom__check svg{width:18px;height:18px}
     .whom__item p{color:var(--ink);font-size:17.5px;font-weight:500}
     .whom__limit{
-      grid-column:1/-1;text-align:center;margin-top:14px;
+      text-align:center;margin-top:14px;
       font-family:'Frank Ruhl Libre',serif;color:var(--terracotta-deep);
       font-size:22px;font-weight:600;
     }
@@ -417,7 +421,8 @@
       .ring{display:none}
       .btn{padding:15px 32px;font-size:18px}
       .nav__cta{padding:9px 18px;font-size:14px}
-      .band__item{text-align:right}
+      .band__line{padding:26px 6px}
+      .card{padding:24px 22px;gap:18px}
       .float-wa{padding:12px 18px;font-size:15px}
     }
   </style>
@@ -479,7 +484,7 @@
         <p class="story__lead">אולי גם אתם מרגישים את זה… כמיהה שקטה. געגוע לדבר-מה שפעם בער.</p>
         <p>המיניות ביניכם כבר לא כמו פעם. <span class="accent">לא כי אין אהבה</span> – אלא כי החיים דוחקים, השגרה מזדחלת, והגוף… צמא לאהבה.</p>
         <p>אתם מחייכים זה לזו, אומרים "הכול בסדר", אבל עמוק בפנים – יש כמיהה להתמסרות, למבט אוהב, לנשימה משותפת, לרגע של קסם שבו אתם נזכרים מה יש ביניכם, מתחת לכל מה שנשחק.</p>
-        <p>סדנת הטנטרה <b>גוף. נשימה. תשוקה.</b> היא הזמנה עדינה לפתוח יחד דלת אל מגע אחר, אל הקשבה, אל עונג שהוא לא טכני אלא נוכח, נושם, מרגש. אל חוויה שתיקחו איתכם הביתה – גם אחרי שתכבו את האור.</p>
+        <p>סדנת הטנטרה <b>גוף. נשימה. תשוקה.</b> היא הזמנה עדינה לפתוח יחד דלת אל מגע אחר, אל הקשבה, אל עונג שהוא לא טכני אלא נוכח, נושם, מרגש. אל חוויה וכלים שתיקחו איתכם הביתה.</p>
         <p class="story__pull">לא צריך לדעת כלום, רק להסכים לבוא יחד, לשבת קרוב, לנשום, להרגיש, לגלות שאפשר אחרת.</p>
       </div>
     </div>
@@ -494,14 +499,14 @@
         <p>ואולי פשוט להיזכר כמה אהבה יש שם, מתחת לכל השגרה הזו?</p>
       </div>
 
-      <div class="band__grid">
-        <div class="band__item reveal d1"><p>כולם סביבכם מדברים על טנטרה, מין משהו כזה שקורה… בעיקר בפרדס חנה. אתם סקרנים – וגם קצת חוששים.</p></div>
-        <div class="band__item reveal d2"><p>רוצים לדבר על זה אבל נבוכים. אנחנו כאן כדי לומר: זה הרבה יותר פשוט, והרבה יותר מרגש, ממה שנדמה.</p></div>
-        <div class="band__item reveal d3"><p>בסדנה תיכנסו יחד למרחב נעים ובטוח, ותגלו מהי טנטרה באמת – בגובה העיניים, בלי קלישאות.</p></div>
-        <div class="band__item reveal d4"><p>תתרגלו חיבור זוגי דרך נוכחות, מגע, נשימה ומבט, ותיקחו הביתה כלים שממשיכים לפעום גם אחרי שהאור כבה.</p></div>
+      <div class="band__list">
+        <p class="band__line reveal d1">כולם סביבכם מדברים על טנטרה, מין משהו כזה שקורה… בעיקר בפרדס חנה. אתם סקרנים – וגם קצת חוששים.</p>
+        <p class="band__line reveal d2">רוצים לדבר על זה אבל נבוכים. אנחנו כאן כדי לומר: זה הרבה יותר פשוט, והרבה יותר מרגש, ממה שנדמה.</p>
+        <p class="band__line reveal d3">בסדנה תיכנסו יחד למרחב נעים ובטוח, ותגלו מהי טנטרה באמת – בגובה העיניים, בלי קלישאות.</p>
+        <p class="band__line reveal d4">תתרגלו חיבור זוגי דרך נוכחות, מגע, נשימה ומבט, עם חוויה וכלים שתיקחו איתכם הביתה.</p>
       </div>
 
-      <p class="band__note reveal">לתת לזוגיות שלכם מתנה שממשיכה לפעום גם אחרי שהאור כבה.</p>
+      <p class="band__note reveal">לתת לזוגיות שלכם מתנה — חוויה וכלים שתיקחו איתכם הביתה.</p>
       <div style="text-align:center">
         <span class="band__safe reveal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -515,7 +520,6 @@
   <section class="sec happens" id="הסדנה">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="kicker">התוכן</span>
         <h2>מה באמת קורה בסדנה?</h2>
         <p>ארבעה מעגלים של נוכחות, חיבור וגילוי – בקצב שלכם.</p>
       </div>
@@ -523,23 +527,31 @@
       <div class="cards">
         <div class="card reveal d1">
           <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg></div>
-          <h3>היכרות רכה עם עקרונות הטנטרה</h3>
-          <p>נשימה, נוכחות, מבט – הדרך לגעת באמת, לא רק בגוף אלא גם בלב.</p>
+          <div class="card__txt">
+            <h3>היכרות רכה עם עקרונות הטנטרה</h3>
+            <p>נשימה, נוכחות, מבט – הדרך לגעת באמת, לא רק בגוף אלא גם בלב.</p>
+          </div>
         </div>
         <div class="card reveal d2">
           <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
-          <h3>תרגולים זוגיים לאינטימיות</h3>
-          <p>ללמוד לדבר מבלי להיבהל, לגעת מבלי ללחוץ, להיות יחד עם כל הלב.</p>
+          <div class="card__txt">
+            <h3>תרגולים זוגיים לאינטימיות</h3>
+            <p>ללמוד לדבר מבלי להיבהל, לגעת מבלי ללחוץ, להיות יחד עם כל הלב.</p>
+          </div>
         </div>
         <div class="card reveal d3">
           <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-6 9 6v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-6h6v6"/></svg></div>
-          <h3>כלים שתיקחו איתכם הביתה</h3>
-          <p>כלים פשוטים ועמוקים שישנו את הדרך בה אתם נפגשים כל יום מחדש.</p>
+          <div class="card__txt">
+            <h3>כלים שתיקחו איתכם הביתה</h3>
+            <p>כלים פשוטים ועמוקים שישנו את הדרך בה אתם נפגשים כל יום מחדש.</p>
+          </div>
         </div>
         <div class="card reveal d4">
           <div class="card__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3>שיח פתוח והדגמות בגובה העיניים</h3>
-          <p>הנחיה רגישה ולא שיפוטית, במרחב בטוח ומכיל.</p>
+          <div class="card__txt">
+            <h3>שיח פתוח והדגמות בגובה העיניים</h3>
+            <p>הנחיה רגישה ולא שיפוטית, במרחב בטוח ומכיל.</p>
+          </div>
         </div>
       </div>
 
@@ -574,7 +586,6 @@
   <section class="sec guides" id="מנחות">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="kicker">מי אנחנו</span>
         <h2>המנחות שלכם</h2>
         <p>שתי מנחות לטנטרה תרפיה ומיניות מודעת שילוו אתכם ברגישות ובחום.</p>
       </div>
@@ -628,7 +639,6 @@
   <section class="sec faq" id="שאלות">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="kicker">שאלות נפוצות</span>
         <h2>כל מה שרציתם לשאול</h2>
       </div>
 
