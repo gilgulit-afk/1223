@@ -3,148 +3,119 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cream:#f7f0e5; --cream-2:#f1e6d6; --paper:#fffbf4; --sand:#e9dbc6;
-  --terra:#c17a5b; --terra-deep:#a85f45; --rose:#cf9d92; --rose-soft:#e7cbc1;
-  --gold:#b98a4b; --gold-soft:#cba066; --olive:#8b8a5c;
-  --ink:#493a30; --ink-soft:#7c6a58; --line:rgba(73,58,48,.14);
+  --cream:#faf0d9; --cream-2:#f4e3c1; --paper:#fffaf0; --sand:#efd6ab;
+  --terra:#c96a3f; --terra-deep:#a4491f; --honey:#e6a63f; --gold:#cf9330;
+  --rose:#d98a72; --rose-soft:#eec2b0; --olive:#8f8637;
+  --ink:#4a3421; --ink-soft:#7e603c; --line:rgba(74,52,33,.16);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
   font-family:'Heebo',sans-serif;color:var(--ink);background:var(--cream);
-  direction:rtl;line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-  font-size:17px;
+  direction:rtl;line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px;
 }
 .ambient{position:fixed;inset:0;z-index:-2;background:var(--cream);}
-.ambient::before,.ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(120px);opacity:.5;}
-.ambient::before{width:60vw;height:60vw;top:-15%;right:-10%;background:radial-gradient(circle,rgba(207,157,146,.45),transparent 70%);}
-.ambient::after{width:55vw;height:55vw;bottom:-15%;left:-12%;background:radial-gradient(circle,rgba(193,122,91,.30),transparent 70%);}
+.ambient::before,.ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(115px);opacity:.6;}
+.ambient::before{width:62vw;height:62vw;top:-16%;right:-10%;background:radial-gradient(circle,rgba(230,166,63,.5),transparent 70%);}
+.ambient::after{width:58vw;height:58vw;bottom:-16%;left:-12%;background:radial-gradient(circle,rgba(217,138,114,.45),transparent 70%);}
 .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-h1,h2,h3,h4{font-family:'Frank Ruhl Libre',serif;font-weight:700;line-height:1.22;color:#3f3128;}
+h1,h2,h3,h4{font-family:'Frank Ruhl Libre',serif;font-weight:700;line-height:1.22;color:#3d2a15;}
 p{font-size:clamp(17px,2.2vw,20px);}
 a{color:inherit;text-decoration:none;}
 .wrap{max-width:1080px;margin:0 auto;padding:0 26px;}
-.pad{padding:clamp(64px,10vw,120px) 0;}
+.pad{padding:clamp(60px,9vw,110px) 0;}
 b,strong{color:var(--terra-deep);font-weight:600;}
-.ital{font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.02em;}
 
 .eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;
-  color:var(--gold);letter-spacing:.34em;font-size:14px;font-weight:600;
-  text-transform:uppercase;margin-bottom:22px;}
+  color:var(--gold);letter-spacing:.32em;font-size:14px;font-weight:600;text-transform:uppercase;margin-bottom:20px;}
 .eyebrow::before,.eyebrow::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
 .eyebrow::after{background:linear-gradient(90deg,var(--gold),transparent);}
 
 .head{text-align:center;margin-bottom:14px;}
 .head h2{font-size:clamp(30px,5vw,50px);color:var(--terra-deep);letter-spacing:.01em;}
-.head .sub{font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(20px,2.6vw,27px);color:var(--rose);margin-top:8px;}
+.head .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);color:var(--rose);margin-top:8px;}
 
 .divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px auto 0;max-width:220px;}
-.divider .d-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.divider .d-mark{color:var(--gold);font-size:15px;}
+.divider .d-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--honey),transparent);}
+.divider .d-mark{color:var(--honey);font-size:15px;}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;
-  background:linear-gradient(135deg,var(--terra),var(--gold));color:#fffaf3;
+  background:linear-gradient(135deg,var(--terra),var(--honey));color:#fff8ec;
   font-family:'Heebo',sans-serif;font-weight:600;font-size:17px;letter-spacing:.02em;
   padding:15px 30px;border-radius:50px;position:relative;overflow:hidden;
-  box-shadow:0 12px 30px rgba(168,95,69,.28);transition:transform .3s ease,box-shadow .3s ease;}
-.btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(168,95,69,.36);}
-.btn.ghost{background:transparent;color:var(--terra-deep);
-  border:1.4px solid rgba(193,122,91,.5);box-shadow:none;}
-.btn.ghost:hover{background:rgba(193,122,91,.08);border-color:var(--terra);}
+  box-shadow:0 12px 30px rgba(164,73,31,.3);transition:transform .3s ease,box-shadow .3s ease;}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(164,73,31,.4);}
+.btn.ghost{background:transparent;color:var(--terra-deep);border:1.4px solid rgba(201,106,63,.55);box-shadow:none;}
+.btn.ghost:hover{background:rgba(201,106,63,.1);border-color:var(--terra);}
 .btn svg{width:19px;height:19px;flex:none;}
-
 .cta-caption{text-align:center;margin-top:18px;color:var(--ink-soft);font-size:15px;}
-.cta-caption a{color:var(--terra-deep);font-weight:600;border-bottom:1px solid rgba(168,95,69,.35);}
+.cta-caption a{color:var(--terra-deep);font-weight:600;border-bottom:1px solid rgba(164,73,31,.35);}
 
 /* HERO */
-.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;padding:90px 22px 70px;}
-.hero-sun{position:absolute;top:12%;left:50%;transform:translateX(-50%);
-  width:min(560px,86vw);height:min(560px,86vw);border-radius:50%;z-index:0;
-  background:radial-gradient(circle,rgba(255,247,233,.9),rgba(231,203,193,.5) 42%,transparent 68%);}
-.hero-inner{position:relative;z-index:2;max-width:860px;}
-.vesica{width:96px;height:72px;color:var(--gold);margin:0 auto 24px;display:block;opacity:.9;}
-.hero h1{font-size:clamp(40px,8.2vw,92px);letter-spacing:.01em;color:var(--terra-deep);margin-bottom:6px;}
+.hero{position:relative;text-align:center;padding:96px 22px 60px;}
+.hero-sun{position:absolute;top:8%;left:50%;transform:translateX(-50%);
+  width:min(580px,88vw);height:min(580px,88vw);border-radius:50%;z-index:0;
+  background:radial-gradient(circle,rgba(255,240,205,.95),rgba(230,166,63,.28) 40%,transparent 70%);}
+.hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;}
+.vesica{width:96px;height:72px;color:var(--gold);margin:0 auto 22px;display:block;opacity:.92;}
+.hero h1{font-size:clamp(40px,8.4vw,94px);letter-spacing:.01em;color:var(--terra-deep);margin-bottom:8px;}
 .hero .sub-ital{font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(20px,3.6vw,32px);color:var(--rose);margin-top:2px;}
-.hero-type{font-family:'Frank Ruhl Libre',serif;font-weight:500;
-  font-size:clamp(19px,3.4vw,28px);color:var(--gold);margin-top:26px;letter-spacing:.04em;}
-.hero-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0 4px;}
-.chip{display:inline-flex;align-items:center;gap:7px;background:var(--paper);
-  border:1px solid var(--line);border-radius:50px;padding:8px 18px;font-size:15px;
-  color:var(--ink-soft);box-shadow:0 4px 14px rgba(73,58,48,.05);}
-.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
+  font-size:clamp(19px,3.1vw,28px);color:var(--rose);margin-top:2px;max-width:640px;margin-inline:auto;line-height:1.5;}
+.hero-type{font-family:'Frank Ruhl Libre',serif;font-weight:600;
+  font-size:clamp(20px,3.6vw,30px);color:var(--gold);margin-top:24px;letter-spacing:.03em;}
+.hero-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 4px;}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--line);
+  border-radius:50px;padding:8px 18px;font-size:15px;color:var(--ink-soft);box-shadow:0 4px 14px rgba(74,52,33,.06);}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px;}
+.hero-photo{position:relative;z-index:2;margin:52px auto 0;}
 
-.lead{max-width:780px;margin:0 auto;text-align:center;font-weight:300;
-  line-height:2.05;font-size:clamp(19px,2.7vw,25px);color:var(--ink);}
-.pills{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;margin-top:40px;}
-.pill{border:1px solid rgba(184,138,75,.4);color:var(--gold);
-  padding:9px 22px;border-radius:50px;font-size:15px;letter-spacing:.02em;
-  background:rgba(184,138,75,.06);transition:.3s;}
-.pill:hover{background:rgba(184,138,75,.14);transform:translateY(-2px);}
+.lead{max-width:820px;margin:0 auto;text-align:center;font-weight:400;
+  line-height:1.9;font-size:clamp(21px,3vw,29px);color:var(--terra-deep);
+  font-family:'Frank Ruhl Libre',serif;}
 
 .tint{background:var(--cream-2);}
 
-.philo .body{max-width:760px;margin:34px auto 0;text-align:center;}
-.philo .body p{color:var(--ink);line-height:2.05;margin-bottom:22px;font-weight:300;
-  font-size:clamp(18px,2.4vw,22px);}
-.philo .body p:first-child{font-size:clamp(19px,2.7vw,24px);color:#4a3a30;}
+/* PHILOSOPHY */
+.philo-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:44px;align-items:center;margin-top:8px;}
+.philo-text p{color:var(--ink);line-height:2.05;margin-bottom:22px;font-weight:400;font-size:clamp(19px,2.5vw,23px);}
+.philo-text p:last-child{margin-bottom:0;}
 
-/* TRACK CARDS */
-.tracks-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:50px;}
-.track{background:var(--paper);border:1px solid var(--line);border-radius:26px;
-  padding:44px 38px;box-shadow:0 22px 55px rgba(73,58,48,.08);
-  transition:transform .35s ease,box-shadow .35s ease;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;}
-.track::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;
-  background:linear-gradient(90deg,var(--rose),var(--terra),var(--gold));}
-.track:hover{transform:translateY(-6px);box-shadow:0 30px 65px rgba(73,58,48,.13);}
-.track h3{font-size:clamp(23px,3vw,29px);color:var(--terra-deep);margin-bottom:8px;}
-.track .t-sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose);font-size:19px;margin-bottom:20px;}
-.track ul{list-style:none;}
-.track li{position:relative;padding:11px 30px 11px 0;color:var(--ink-soft);
-  font-size:17px;border-bottom:1px solid rgba(73,58,48,.07);}
-.track li:last-child{border-bottom:none;color:var(--terra-deep);font-weight:500;}
-.track li::before{content:"✦";position:absolute;right:0;top:12px;color:var(--rose);font-size:14px;}
-.track-price{margin-top:24px;text-align:center;font-family:'Frank Ruhl Libre',serif;
-  font-weight:700;font-size:26px;color:var(--terra-deep);}
-.track-price small{font-size:17px;color:var(--gold);margin-right:1px;}
-.track-price span{font-family:'Heebo',sans-serif;font-size:15px;font-weight:400;color:var(--ink-soft);margin-right:6px;}
+/* PHOTOS */
+.photo{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);
+  box-shadow:0 26px 62px rgba(74,52,33,.2);background:var(--paper);}
+.photo-img{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover;}
+.photo--tall{aspect-ratio:4/5;width:min(360px,80vw);margin-inline:auto;}
+.photo--wide{aspect-ratio:4/5;}
+.photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;text-align:center;color:#fff6e8;
+  background:linear-gradient(155deg,var(--honey) -10%,var(--rose) 45%,var(--terra) 115%);}
+.photo-ph-ic{font-size:44px;}
+.photo-ph-tx{font-size:17px;font-weight:500;line-height:1.5;}
+.photo-ph-tx small{opacity:.85;font-weight:400;}
 
-/* MEDITATION */
-.medi-card{max-width:840px;margin:0 auto;text-align:center;background:var(--paper);
-  border:1px solid var(--line);border-radius:30px;padding:clamp(40px,6vw,66px) clamp(28px,5vw,58px);
-  box-shadow:0 26px 60px rgba(73,58,48,.09);position:relative;}
-.medi-card .vesica{width:70px;height:52px;margin-bottom:14px;color:var(--gold);}
-.medi-en{font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.1em;
-  color:var(--terra);font-size:clamp(22px,3.4vw,32px);display:block;line-height:1.35;}
-.medi-card h3{font-size:clamp(23px,3.2vw,30px);color:var(--terra-deep);margin:12px 0 12px;}
-.medi-card p{color:var(--ink-soft);max-width:600px;margin:0 auto;font-weight:300;}
+/* MEDITATION band */
+.medi-band{text-align:center;}
+.medi-band .vesica{width:64px;height:48px;margin-bottom:12px;color:var(--honey);}
+.medi-en{font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.08em;
+  color:var(--terra);font-size:clamp(24px,4vw,38px);line-height:1.3;}
 
 /* DATES */
-.sub-details{font-family:'Frank Ruhl Libre',serif;font-size:clamp(19px,2.6vw,24px);
-  font-weight:500;color:var(--gold);margin-top:12px;line-height:1.7;}
-.ev-grid{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-top:52px;}
-.ev-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
-  width:360px;max-width:100%;
+.sub-details{font-family:'Frank Ruhl Libre',serif;font-size:clamp(19px,2.6vw,24px);font-weight:500;color:var(--gold);margin-top:12px;line-height:1.7;}
+.ev-grid{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-top:52px;}
+.ev-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;width:340px;max-width:100%;
   background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:40px 28px;
-  box-shadow:0 18px 45px rgba(73,58,48,.07);transition:transform .35s ease,box-shadow .35s ease;}
-.ev-card:hover{transform:translateY(-5px);box-shadow:0 26px 58px rgba(73,58,48,.12);}
-.ev-card.feat{border-color:rgba(193,122,91,.5);
-  background:linear-gradient(170deg,#fffaf2,#f6e7dc);box-shadow:0 22px 55px rgba(168,95,69,.16);}
+  box-shadow:0 18px 45px rgba(74,52,33,.08);transition:transform .35s ease,box-shadow .35s ease;}
+.ev-card:hover{transform:translateY(-5px);box-shadow:0 26px 58px rgba(74,52,33,.14);}
+.ev-card.feat{border-color:rgba(201,106,63,.5);background:linear-gradient(170deg,#fffaf0,#f6e3cb);box-shadow:0 22px 55px rgba(164,73,31,.18);}
 .ev-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--terra),var(--gold));color:#fffaf3;
-  font-weight:600;font-size:13px;letter-spacing:.04em;padding:5px 16px;border-radius:50px;
-  box-shadow:0 8px 18px rgba(168,95,69,.3);white-space:nowrap;}
-.ev-track{display:inline-block;background:rgba(207,157,146,.16);border:1px solid rgba(207,157,146,.4);
-  color:var(--terra-deep);font-size:14px;font-weight:600;letter-spacing:.03em;
-  padding:5px 16px;border-radius:50px;margin-bottom:12px;}
+  background:linear-gradient(135deg,var(--terra),var(--honey));color:#fff8ec;font-weight:600;font-size:13px;
+  letter-spacing:.04em;padding:5px 16px;border-radius:50px;box-shadow:0 8px 18px rgba(164,73,31,.32);white-space:nowrap;}
+.ev-track{display:inline-block;background:rgba(217,138,114,.18);border:1px solid rgba(217,138,114,.42);
+  color:var(--terra-deep);font-size:14px;font-weight:600;letter-spacing:.03em;padding:5px 16px;border-radius:50px;margin-bottom:12px;}
 .ev-date{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:38px;color:var(--terra-deep);}
 .ev-place{color:var(--ink-soft);font-size:16px;margin:6px 0 18px;}
-.ev-time{width:100%;background:rgba(184,138,75,.08);border:1px solid rgba(184,138,75,.22);
-  border-radius:14px;padding:13px;margin-bottom:14px;}
+.ev-time{width:100%;background:rgba(230,166,63,.12);border:1px solid rgba(230,166,63,.3);border-radius:14px;padding:13px;margin-bottom:14px;}
 .ev-time-lbl{display:block;font-size:14px;color:var(--gold);margin-bottom:4px;letter-spacing:.03em;}
 .ev-time span[dir]{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:18px;color:var(--ink);}
 .ev-price{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:32px;color:var(--terra-deep);margin-bottom:20px;}
@@ -157,40 +128,37 @@ b,strong{color:var(--terra-deep);font-weight:600;}
 /* PRICING */
 .pricing{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:48px;}
 .price-item{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:22px;
-  padding:30px 44px;text-align:center;min-width:250px;box-shadow:0 14px 36px rgba(73,58,48,.07);}
-.price-item.feat{border-color:rgba(193,122,91,.5);background:linear-gradient(170deg,#fffaf2,#f6e7dc);
-  box-shadow:0 20px 48px rgba(168,95,69,.15);}
-.p-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--terra),var(--gold));color:#fffaf3;font-size:12px;
-  font-weight:600;padding:5px 16px;border-radius:50px;letter-spacing:.04em;white-space:nowrap;}
+  padding:32px 46px;text-align:center;min-width:250px;box-shadow:0 14px 36px rgba(74,52,33,.08);}
+.price-item.feat{border-color:rgba(201,106,63,.5);background:linear-gradient(170deg,#fffaf0,#f6e3cb);box-shadow:0 22px 50px rgba(164,73,31,.16);}
+.p-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--terra),var(--honey));
+  color:#fff8ec;font-size:12px;font-weight:600;padding:5px 16px;border-radius:50px;letter-spacing:.04em;white-space:nowrap;}
 .p-label{display:block;color:var(--ink-soft);font-size:16px;margin-bottom:10px;line-height:1.5;}
-.p-val{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:40px;color:var(--terra-deep);}
+.p-val{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:42px;color:var(--terra-deep);}
 .p-val small{font-size:22px;font-weight:400;margin-right:2px;color:var(--gold);}
+.p-was{display:block;margin-top:6px;color:var(--ink-soft);font-size:16px;}
+.p-was s{color:var(--rose);text-decoration-thickness:2px;}
 
 /* FINAL */
-.final{background:linear-gradient(160deg,var(--sand),#e3d0b8);}
+.final{background:linear-gradient(160deg,var(--sand),#e6c896);}
 .final .head h2{color:var(--terra-deep);}
-.final .hero-cta{margin-top:36px;justify-content:center;}
+.final .hero-cta{margin-top:34px;justify-content:center;}
 
-footer{background:#3f3128;color:#e7d8c6;text-align:center;padding:56px 24px;}
-footer .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(26px,4vw,38px);
-  color:#f0d9b5;display:block;margin-bottom:12px;letter-spacing:.02em;}
-footer .fmeta{font-size:15px;color:#c9b49c;}
+footer{background:#3d2a15;color:#efdcbe;text-align:center;padding:56px 24px;}
+footer .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(26px,4vw,38px);color:#f4d79a;display:block;margin-bottom:12px;letter-spacing:.02em;}
+footer .fmeta{font-size:15px;color:#cbb187;}
 
-/* Floating action buttons: phone + whatsapp */
+/* Floating buttons */
 .fabs{position:fixed;bottom:22px;left:22px;z-index:60;display:flex;flex-direction:column;gap:12px;}
-.fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 26px rgba(73,58,48,.28);transition:transform .3s ease;}
+.fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(74,52,33,.3);transition:transform .3s ease;}
 .fab:hover{transform:translateY(-3px) scale(1.05);}
 .fab svg{width:26px;height:26px;}
 .fab-wa{background:#25d366;color:#fff;}
-.fab-call{background:linear-gradient(135deg,var(--terra),var(--gold));color:#fff;}
+.fab-call{background:linear-gradient(135deg,var(--terra),var(--honey));color:#fff;}
 
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
 .reveal.in{opacity:1;transform:none;}
-
 @media(max-width:760px){
-  .tracks-grid{grid-template-columns:1fr;}
+  .philo-grid{grid-template-columns:1fr;gap:30px;}
   .fab{width:52px;height:52px;}
 }
 @media(prefers-reduced-motion:reduce){
@@ -211,127 +179,69 @@ footer .fmeta{font-size:15px;color:#c9b49c;}
   <circle cx="75" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
 </svg>
-    <div class="eyebrow">Sacred Union · השער לחיבור המקודש</div>
     <h1>אומנות העינוג הטנטרי</h1>
-    <p class="sub-ital">מימוש הפוטנציאל הזוגי והמיני</p>
-    <div class="hero-type">סדנאות יום לזוגות</div>
+    <p class="sub-ital">השער לחיבור המקודש ומימוש הפוטנציאל הזוגי והמיני</p>
+    <div class="hero-type">סדנאות יום לזוגות אוהבים</div>
     <div class="hero-meta">
       <span class="chip">📍 פרדס חנה</span>
-      <span class="chip">⏳ יום מלא</span>
-      <span class="chip">♾️ לזוגות</span>
+      <span class="chip">🕙 <span dir="ltr">10:00–15:30</span></span>
     </div>
     <div class="hero-cta">
-      <a class="btn btn-icon" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%94%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%98%D7%A0%D7%98%D7%A8%D7%99" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>הרשמה בוואטסאפ</span></a>
+      <a class="btn btn-icon" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%94%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%98%D7%A0%D7%98%D7%A8%D7%99" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
       <a class="btn ghost btn-icon" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>התקשרו אלינו</span></a>
     </div>
-    <p class="cta-caption">לתיאום, שאלות והרשמה · <a href="tel:+972544799145" dir="ltr">054-479-9145</a></p>
+    <p class="cta-caption">להרשמה ותיאום · <a href="tel:+972544799145" dir="ltr">054-479-9145</a></p>
+    <div class="hero-photo"><figure class="photo photo--tall reveal" data-slot="woman">
+      <div class="photo-ph"><span class="photo-ph-ic">🪷</span><span class="photo-ph-tx">אומנות עינוג האישה<br><small>התמונה תתווסף כאן</small></span></div>
+      <img class="photo-img" src="images/woman.jpg" alt="אומנות עינוג האישה" loading="lazy" onerror="this.remove()">
+    </figure></div>
   </div>
 </header>
 
-<!-- INTRO -->
+<!-- INVITATION -->
 <section class="pad">
   <div class="wrap">
-    <p class="lead reveal">
-      בכל זוגיות קיים <b>פוטנציאל מיני ורוחני עצום</b>, שלרוב נשאר חבוי תחת עומס השגרה.
-      הסדנאות מזמינות אתכם לפגוש את הפוטנציאל הזה מחדש — <b>בנוכחות, בעדינות ובכוונה</b>.
-    </p>
-    <div class="pills reveal" style="transition-delay:120ms">
-      <span class="pill">חיבור מקודש</span>
-      <span class="pill">נוכחות מלאה</span>
-      <span class="pill">תשוקה</span>
-      <span class="pill">מפגש נשמתי</span>
-      <span class="pill">עונג</span>
-      <span class="pill">התעלות</span>
-    </div>
+    <p class="lead reveal">בואו לממש את הפוטנציאל הזוגי והמיני שלכם ולחוות את עצמכם במגע טנטרי במרחב אהבה מתוך אינטימיות רגשית ולב פתוח</p>
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<section class="pad tint philo" id="about">
+<!-- PHILOSOPHY + PHOTO -->
+<section class="pad tint" id="about">
   <div class="wrap">
-    <div class="head reveal">
-      <div class="eyebrow">טנטרה</div>
-      <h2>החיבור המקודש</h2>
-      <p class="sub">מעבר לפיזי — אל מפגש נשמתי עמוק</p>
-      <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
-    </div>
-    <div class="body">
-      <p class="reveal">
-        בטנטרה, אנו מאמינות כי החיבור בין הזכרי לנקבי הוא
-        <b>התדר הגבוה ביותר שקיים</b> — שער להתעלות מעבר לפיזי,
-        אל עבר מפגש נשמתי עמוק, מלא תשוקה ונוכחות.
-      </p>
-      <p class="reveal" style="transition-delay:120ms">
-        מתוך המקום הזה נולדו הסדנאות: מרחב יום מוחזק ובטוח לזוגות, שבו לומדים להאט,
-        להקשיב ולתת מקום לעונג לנוע — כדי לפגוש מחדש את הקרבה, התשוקה והחיבור העמוק שביניכם.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- TRACKS -->
-<section class="pad">
-  <div class="wrap">
-    <div class="head reveal">
-      <div class="eyebrow">שני מסלולים</div>
-      <h2>הסדנאות</h2>
-      <p class="sub">יום מלא של תרגול מודרך לזוגות</p>
-      <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
-    </div>
-    <div class="tracks-grid">
-      <article class="track reveal">
-        <h3>אומנות עינוג האישה</h3>
-        <p class="t-sub">The Art of Pleasuring Her</p>
-        <ul>
-          <li>יום מלא של תרגול מודרך לזוגות</li>
-          <li>למידה של מגע מעורר, קשוב ומכבד</li>
-          <li>נשימה, נוכחות והאטה של הקצב</li>
-          <li>פתיחת שער לעונג נשי עמוק</li>
-          <li>המועד הקרוב · פרדס חנה · <span dir="ltr">3.7</span></li>
-        </ul>
-        <div class="track-price">1500<small>₪</small><span>לסדנה</span></div>
-      </article>
-      <article class="track reveal" style="transition-delay:120ms">
-        <h3>אומנות עינוג הגבר</h3>
-        <p class="t-sub">The Art of Pleasuring Him</p>
-        <ul>
-          <li>יום מלא של תרגול מודרך לזוגות</li>
-          <li>למידה של מגע מעורר, קשוב ומכבד</li>
-          <li>נשימה, נוכחות והאטה של הקצב</li>
-          <li>פתיחת שער לעונג גברי עמוק</li>
-          <li>פרדס חנה · מועד חדש ייפתח בקרוב</li>
-        </ul>
-        <div class="track-price">1500<small>₪</small><span>לסדנה</span></div>
-      </article>
+    <div class="philo-grid">
+      <figure class="photo photo--wide reveal" data-slot="second">
+      <div class="photo-ph"><span class="photo-ph-ic">🪷</span><span class="photo-ph-tx">מגע טנטרי במרחב אהבה<br><small>התמונה תתווסף כאן</small></span></div>
+      <img class="photo-img" src="images/couple.jpg" alt="מגע טנטרי במרחב אהבה" loading="lazy" onerror="this.remove()">
+    </figure>
+      <div class="philo-text">
+        <p class="reveal">בכל זוגיות קיים פוטנציאל מיני ורוחני עצום, שלרוב נשאר חבוי תחת עומס השגרה.</p>
+        <p class="reveal" style="transition-delay:120ms">בטנטרה, אנו מאמינות כי החיבור בין הזכרי לנקבי, הוא התדר הגבוה ביותר שקיים- שער להתעלות מעבר לפיזי אל עבר מפגש נשמתי עמוק, מלא תשוקה ונוכחות.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- MEDITATION -->
-<section class="pad tint">
+<section class="pad">
   <div class="wrap">
-    <div class="medi-card reveal">
+    <div class="medi-band reveal">
       <svg class="vesica" viewBox="0 0 120 90" fill="none" aria-hidden="true">
   <circle cx="45" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="75" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
 </svg>
-      <span class="medi-en">Guided Meditation &amp; Breathwork Sessions</span>
-      <h3>מדיטציה מודרכת ומרחב נשימה</h3>
-      <p>כל סדנה נפתחת ונסגרת במרחב מוחזק של מדיטציה מודרכת ונשימה —
-      כדי להירגע, להתכוונן ולהיפתח לחוויה מתוך שקט ונוכחות.</p>
+      <div class="medi-en">Guided Meditation &amp; Breathwork Sessions</div>
     </div>
   </div>
 </section>
 
-<!-- DATES & PRICING -->
-<section class="pad" id="dates">
+<!-- DATES -->
+<section class="pad tint" id="dates">
   <div class="wrap">
     <div class="head reveal">
       <div class="eyebrow">מועדים והרשמה</div>
-      <h2>הסדנה הקרובה</h2>
-      <p class="sub">בואו להיפתח יחד</p>
-      <p class="sub-details">סדנת יום לזוגות · פרדס חנה</p>
+      <h2>הסדנאות הקרובות</h2>
+      <p class="sub-details">סדנאות יום לזוגות אוהבים · פרדס חנה</p>
       <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
     </div>
     <div class="ev-grid">
@@ -339,12 +249,25 @@ footer .fmeta{font-size:15px;color:#c9b49c;}
         <article class="ev-card feat reveal" style="transition-delay:0ms">
           <span class="ev-badge">המועד הקרוב</span>
           <span class="ev-track">עינוג האישה</span>
-          <div class="ev-date" dir="ltr">03.07.26</div>
+          <div class="ev-date" dir="ltr">31.07.26</div>
           <div class="ev-place">פרדס חנה</div>
-          <div class="ev-time"><span class="ev-time-lbl">שעות הסדנה</span><span dir="ltr">09:30–15:30</span></div>
+          <div class="ev-time"><span class="ev-time-lbl">שעות הסדנה</span><span dir="ltr">10:00–15:30</span></div>
           <div class="ev-price">1500<small>₪</small><span>לסדנה</span></div>
           <div class="ev-actions">
-            <a class="btn btn-icon ev-btn" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%90%D7%99%D7%A9%D7%94%20%C2%B7%203.7.2026" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>הרשמה בוואטסאפ</span></a>
+            <a class="btn btn-icon ev-btn" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%90%D7%99%D7%A9%D7%94%20%C2%B7%2031.7.2026" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
+            <a class="btn ghost btn-icon ev-btn" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>חיוג להרשמה</span></a>
+          </div>
+        </article>
+
+        <article class="ev-card reveal" style="transition-delay:120ms">
+          
+          <span class="ev-track">עינוג הגבר</span>
+          <div class="ev-date" dir="ltr">14.08.26</div>
+          <div class="ev-place">פרדס חנה</div>
+          <div class="ev-time"><span class="ev-time-lbl">שעות הסדנה</span><span dir="ltr">10:00–15:30</span></div>
+          <div class="ev-price">1500<small>₪</small><span>לסדנה</span></div>
+          <div class="ev-actions">
+            <a class="btn btn-icon ev-btn" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%92%D7%91%D7%A8%20%C2%B7%2014.8.2026" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
             <a class="btn ghost btn-icon ev-btn" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>חיוג להרשמה</span></a>
           </div>
         </article>
@@ -356,14 +279,14 @@ footer .fmeta{font-size:15px;color:#c9b49c;}
         <span class="p-val">1500<small>₪</small></span>
       </div>
       <div class="price-item feat">
-        <span class="p-tag">הכי משתלם</span>
-        <span class="p-label">שתי הסדנאות<br>עינוג הגבר + עינוג האישה</span>
+        <span class="p-tag">מבצע לשתי הסדנאות</span>
+        <span class="p-label">שתי הסדנאות<br>עינוג האישה + עינוג הגבר</span>
         <span class="p-val">2500<small>₪</small></span>
+        <span class="p-was">במקום <s>3000<small>₪</small></s></span>
       </div>
     </div>
 
-    <p class="note reveal">ההרשמה מתבצעת בוואטסאפ או בטלפון — נשמח לתאם אתכם ולעדכן בכל הפרטים.
-      לתיאום והרשמה: <a href="tel:+972544799145" dir="ltr" style="color:var(--terra-deep);font-weight:600;">054-479-9145</a></p>
+    <p class="note reveal">להרשמה בוואטסאפ או בטלפון: <a href="tel:+972544799145" dir="ltr" style="color:var(--terra-deep);font-weight:600;">054-479-9145</a></p>
   </div>
 </section>
 
@@ -376,20 +299,19 @@ footer .fmeta{font-size:15px;color:#c9b49c;}
   <circle cx="75" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
 </svg>
-      <h2>מוכנים להיפתח?</h2>
-      <p class="sub">השער לחיבור המקודש מחכה לכם</p>
+      <h2>להרשמה</h2>
     </div>
     <div class="hero-cta reveal" style="transition-delay:120ms">
-      <a class="btn btn-icon" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%94%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%98%D7%A0%D7%98%D7%A8%D7%99" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>הרשמה בוואטסאפ</span></a>
+      <a class="btn btn-icon" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%94%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%98%D7%A0%D7%98%D7%A8%D7%99" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
       <a class="btn ghost btn-icon" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>התקשרו אלינו</span></a>
     </div>
-    <p class="cta-caption">לתיאום, שאלות והרשמה · <a href="tel:+972544799145" dir="ltr">054-479-9145</a></p>
+    <p class="cta-caption">להרשמה ותיאום · <a href="tel:+972544799145" dir="ltr">054-479-9145</a></p>
   </div>
 </section>
 
 <footer>
   <span class="big">אומנות העינוג הטנטרי</span>
-  <span class="fmeta">השער לחיבור המקודש · סדנאות יום לזוגות · פרדס חנה · © 2026 כל הזכויות שמורות</span>
+  <span class="fmeta">סדנאות יום לזוגות אוהבים · פרדס חנה · © 2026 כל הזכויות שמורות</span>
 </footer>
 
 <div class="fabs">
