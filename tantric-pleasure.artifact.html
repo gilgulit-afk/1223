@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
   --cream:#faf0d9; --cream-2:#f4e3c1; --paper:#fffaf0; --sand:#efd6ab;
@@ -10,12 +10,10 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:'Heebo',sans-serif;color:var(--ink);background:var(--cream);
-  direction:rtl;line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px;
-}
+body{font-family:'Heebo',sans-serif;color:var(--ink);background:var(--cream);
+  direction:rtl;line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px;}
 .ambient{position:fixed;inset:0;z-index:-2;background:var(--cream);}
-.ambient::before,.ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(115px);opacity:.6;}
+.ambient::before,.ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(115px);opacity:.55;}
 .ambient::before{width:62vw;height:62vw;top:-16%;right:-10%;background:radial-gradient(circle,rgba(230,166,63,.5),transparent 70%);}
 .ambient::after{width:58vw;height:58vw;bottom:-16%;left:-12%;background:radial-gradient(circle,rgba(217,138,114,.45),transparent 70%);}
 .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
@@ -24,26 +22,24 @@ h1,h2,h3,h4{font-family:'Frank Ruhl Libre',serif;font-weight:700;line-height:1.2
 p{font-size:clamp(17px,2.2vw,20px);}
 a{color:inherit;text-decoration:none;}
 .wrap{max-width:1080px;margin:0 auto;padding:0 26px;}
-.pad{padding:clamp(60px,9vw,110px) 0;}
-b,strong{color:var(--terra-deep);font-weight:600;}
+.wrap-narrow{max-width:820px;margin:0 auto;padding:0 26px;}
+.pad{padding:clamp(58px,8.5vw,104px) 0;}
+b,strong{color:var(--terra-deep);font-weight:700;}
 
-.eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;
-  color:var(--gold);letter-spacing:.32em;font-size:14px;font-weight:600;text-transform:uppercase;margin-bottom:20px;}
-.eyebrow::before,.eyebrow::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);
+  letter-spacing:.3em;font-size:14px;font-weight:600;text-transform:uppercase;margin-bottom:18px;}
+.eyebrow::before,.eyebrow::after{content:"";width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
 .eyebrow::after{background:linear-gradient(90deg,var(--gold),transparent);}
-
-.head{text-align:center;margin-bottom:14px;}
-.head h2{font-size:clamp(30px,5vw,50px);color:var(--terra-deep);letter-spacing:.01em;}
+.head{text-align:center;margin-bottom:16px;}
+.head h2{font-size:clamp(29px,4.8vw,48px);color:var(--terra-deep);letter-spacing:.01em;}
 .head .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);color:var(--rose);margin-top:8px;}
-
 .divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px auto 0;max-width:220px;}
 .divider .d-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--honey),transparent);}
 .divider .d-mark{color:var(--honey);font-size:15px;}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;
-  background:linear-gradient(135deg,var(--terra),var(--honey));color:#fff8ec;
-  font-family:'Heebo',sans-serif;font-weight:600;font-size:17px;letter-spacing:.02em;
-  padding:15px 30px;border-radius:50px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--terra),var(--honey));color:#fff8ec;font-family:'Heebo',sans-serif;
+  font-weight:600;font-size:17px;letter-spacing:.02em;padding:15px 30px;border-radius:50px;position:relative;overflow:hidden;
   box-shadow:0 12px 30px rgba(164,73,31,.3);transition:transform .3s ease,box-shadow .3s ease;}
 .btn:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(164,73,31,.4);}
 .btn.ghost{background:transparent;color:var(--terra-deep);border:1.4px solid rgba(201,106,63,.55);box-shadow:none;}
@@ -54,51 +50,97 @@ b,strong{color:var(--terra-deep);font-weight:600;}
 
 /* HERO */
 .hero{position:relative;text-align:center;padding:96px 22px 60px;}
-.hero-sun{position:absolute;top:8%;left:50%;transform:translateX(-50%);
-  width:min(580px,88vw);height:min(580px,88vw);border-radius:50%;z-index:0;
-  background:radial-gradient(circle,rgba(255,240,205,.95),rgba(230,166,63,.28) 40%,transparent 70%);}
+.hero-sun{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:min(580px,88vw);height:min(580px,88vw);
+  border-radius:50%;z-index:0;background:radial-gradient(circle,rgba(255,240,205,.95),rgba(230,166,63,.28) 40%,transparent 70%);}
 .hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;}
 .vesica{width:96px;height:72px;color:var(--gold);margin:0 auto 22px;display:block;opacity:.92;}
-.hero h1{font-size:clamp(40px,8.4vw,94px);letter-spacing:.01em;color:var(--terra-deep);margin-bottom:8px;}
-.hero .sub-ital{font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:clamp(19px,3.1vw,28px);color:var(--rose);margin-top:2px;max-width:640px;margin-inline:auto;line-height:1.5;}
-.hero-type{font-family:'Frank Ruhl Libre',serif;font-weight:600;
-  font-size:clamp(20px,3.6vw,30px);color:var(--gold);margin-top:24px;letter-spacing:.03em;}
-.hero-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 4px;}
-.chip{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--line);
-  border-radius:50px;padding:8px 18px;font-size:15px;color:var(--ink-soft);box-shadow:0 4px 14px rgba(74,52,33,.06);}
-.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px;}
-.hero-photo{position:relative;z-index:2;margin:52px auto 0;}
+.hero h1{font-size:clamp(40px,8.4vw,94px);letter-spacing:.01em;color:var(--terra-deep);margin-bottom:12px;}
+.hero-sub{font-family:'Frank Ruhl Libre',serif;font-weight:700;color:var(--terra-deep);
+  font-size:clamp(22px,3.5vw,34px);line-height:1.4;max-width:720px;margin:0 auto;}
+.hero-type{font-family:'Frank Ruhl Libre',serif;font-weight:500;font-size:clamp(19px,3.3vw,27px);
+  color:var(--gold);margin-top:20px;letter-spacing:.03em;}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px;}
+.hero-photo{position:relative;z-index:2;margin:50px auto 0;}
 
-.lead{max-width:820px;margin:0 auto;text-align:center;font-weight:400;
-  line-height:1.9;font-size:clamp(21px,3vw,29px);color:var(--terra-deep);
-  font-family:'Frank Ruhl Libre',serif;}
-
+.lead{max-width:820px;margin:0 auto;text-align:center;font-weight:400;line-height:1.9;
+  font-size:clamp(21px,3vw,29px);color:var(--terra-deep);font-family:'Frank Ruhl Libre',serif;}
 .tint{background:var(--cream-2);}
 
 /* PHILOSOPHY */
-.philo-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:44px;align-items:center;margin-top:8px;}
+.philo-text{max-width:760px;margin:0 auto;text-align:center;}
 .philo-text p{color:var(--ink);line-height:2.05;margin-bottom:22px;font-weight:400;font-size:clamp(19px,2.5vw,23px);}
 .philo-text p:last-child{margin-bottom:0;}
+
+/* STATEMENT banner */
+.statement{text-align:center;}
+.statement p{font-family:'Frank Ruhl Libre',serif;font-weight:700;color:var(--terra-deep);
+  font-size:clamp(24px,4vw,40px);line-height:1.4;max-width:820px;margin:0 auto;}
 
 /* PHOTOS */
 .photo{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);
   box-shadow:0 26px 62px rgba(74,52,33,.2);background:var(--paper);}
 .photo-img{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover;}
 .photo--tall{aspect-ratio:4/5;width:min(360px,80vw);margin-inline:auto;}
-.photo--wide{aspect-ratio:4/5;}
+.photo--wide{aspect-ratio:16/10;width:min(760px,92%);margin-inline:auto;}
 .photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:12px;text-align:center;color:#fff6e8;
-  background:linear-gradient(155deg,var(--honey) -10%,var(--rose) 45%,var(--terra) 115%);}
+  gap:12px;text-align:center;color:#fff6e8;background:linear-gradient(155deg,var(--honey) -10%,var(--rose) 45%,var(--terra) 115%);}
 .photo-ph-ic{font-size:44px;}
 .photo-ph-tx{font-size:17px;font-weight:500;line-height:1.5;}
 .photo-ph-tx small{opacity:.85;font-weight:400;}
 
+/* TWO-COLUMN "what you get" */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:46px;}
+.duo-card{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:40px 34px;
+  box-shadow:0 20px 50px rgba(74,52,33,.08);position:relative;overflow:hidden;}
+.duo-card::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--terra),var(--honey));}
+.duo-card h3{font-size:clamp(22px,2.9vw,27px);color:var(--terra-deep);margin-bottom:14px;}
+.duo-card p{color:var(--ink-soft);font-size:17px;line-height:1.95;}
+
+/* WORKSHOP detail card */
+.wk{background:var(--paper);border:1px solid var(--line);border-radius:28px;
+  padding:clamp(34px,5vw,56px);box-shadow:0 24px 58px rgba(74,52,33,.1);max-width:900px;margin:0 auto;position:relative;overflow:hidden;}
+.wk::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--terra),var(--honey));}
+.wk .eyebrow{justify-content:flex-start;}
+.wk h2{color:var(--terra-deep);font-size:clamp(26px,4vw,40px);margin-bottom:14px;}
+.wk > p{color:var(--ink);font-size:clamp(18px,2.3vw,21px);line-height:2;margin-bottom:18px;}
+.wk h3{color:var(--terra);font-size:clamp(20px,2.6vw,24px);margin:26px 0 14px;}
+.wk-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+.wk-list li{position:relative;padding:13px 34px 13px 0;color:var(--ink);font-size:17px;line-height:1.85;
+  border-bottom:1px solid rgba(74,52,33,.08);}
+.wk-list li:last-child{border-bottom:none;}
+.wk-list li::before{content:"✦";position:absolute;right:0;top:14px;color:var(--terra);font-size:15px;}
+.wk-list.gem li::before{content:"💎";font-size:14px;top:15px;}
+.wk-list li b{display:block;margin-bottom:2px;color:var(--terra-deep);}
+
 /* MEDITATION band */
 .medi-band{text-align:center;}
 .medi-band .vesica{width:64px;height:48px;margin-bottom:12px;color:var(--honey);}
-.medi-en{font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.08em;
-  color:var(--terra);font-size:clamp(24px,4vw,38px);line-height:1.3;}
+.medi-en{font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.08em;color:var(--terra);
+  font-size:clamp(24px,4vw,38px);line-height:1.3;}
+
+/* TESTIMONIALS carousel */
+.tst-stage{position:relative;max-width:780px;margin:38px auto 0;min-height:200px;}
+.tst-slide{position:absolute;top:0;left:0;right:0;opacity:0;visibility:hidden;transition:opacity .7s ease;
+  background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:44px 46px;text-align:center;
+  box-shadow:0 20px 50px rgba(74,52,33,.09);}
+.tst-slide.on{opacity:1;visibility:visible;position:relative;}
+.tst-qm{display:block;font-family:'Cormorant Garamond',serif;font-size:60px;line-height:.4;color:var(--honey);margin-bottom:14px;height:34px;}
+.tst-slide p{font-family:'Frank Ruhl Libre',serif;font-size:clamp(20px,2.7vw,26px);color:var(--terra-deep);line-height:1.6;font-weight:500;}
+.tst-dots{display:flex;gap:10px;justify-content:center;margin-top:26px;}
+.tst-dot{width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;padding:0;
+  background:rgba(164,73,31,.25);transition:.3s;}
+.tst-dot.on{background:var(--terra);transform:scale(1.25);}
+
+/* BIOS */
+.bios{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:46px;}
+.bio{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:40px 34px;
+  box-shadow:0 20px 50px rgba(74,52,33,.08);text-align:center;}
+.bio-badge{position:relative;overflow:hidden;width:96px;height:96px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,var(--honey),var(--terra));color:#fff8ec;font-family:'Frank Ruhl Libre',serif;font-size:34px;font-weight:700;}
+.bio-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.bio h3{color:var(--terra-deep);font-size:clamp(22px,2.8vw,26px);margin-bottom:4px;}
+.bio .role{color:var(--gold);font-weight:600;font-size:16px;margin-bottom:14px;}
+.bio p{color:var(--ink-soft);font-size:16px;line-height:1.95;}
 
 /* DATES */
 .sub-details{font-family:'Frank Ruhl Libre',serif;font-size:clamp(19px,2.6vw,24px);font-weight:500;color:var(--gold);margin-top:12px;line-height:1.7;}
@@ -108,11 +150,10 @@ b,strong{color:var(--terra-deep);font-weight:600;}
   box-shadow:0 18px 45px rgba(74,52,33,.08);transition:transform .35s ease,box-shadow .35s ease;}
 .ev-card:hover{transform:translateY(-5px);box-shadow:0 26px 58px rgba(74,52,33,.14);}
 .ev-card.feat{border-color:rgba(201,106,63,.5);background:linear-gradient(170deg,#fffaf0,#f6e3cb);box-shadow:0 22px 55px rgba(164,73,31,.18);}
-.ev-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--terra),var(--honey));color:#fff8ec;font-weight:600;font-size:13px;
-  letter-spacing:.04em;padding:5px 16px;border-radius:50px;box-shadow:0 8px 18px rgba(164,73,31,.32);white-space:nowrap;}
-.ev-track{display:inline-block;background:rgba(217,138,114,.18);border:1px solid rgba(217,138,114,.42);
-  color:var(--terra-deep);font-size:14px;font-weight:600;letter-spacing:.03em;padding:5px 16px;border-radius:50px;margin-bottom:12px;}
+.ev-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--terra),var(--honey));
+  color:#fff8ec;font-weight:600;font-size:13px;letter-spacing:.04em;padding:5px 16px;border-radius:50px;box-shadow:0 8px 18px rgba(164,73,31,.32);white-space:nowrap;}
+.ev-track{display:inline-block;background:rgba(217,138,114,.18);border:1px solid rgba(217,138,114,.42);color:var(--terra-deep);
+  font-size:14px;font-weight:600;letter-spacing:.03em;padding:5px 16px;border-radius:50px;margin-bottom:12px;}
 .ev-date{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:38px;color:var(--terra-deep);}
 .ev-place{color:var(--ink-soft);font-size:16px;margin:6px 0 18px;}
 .ev-time{width:100%;background:rgba(230,166,63,.12);border:1px solid rgba(230,166,63,.3);border-radius:14px;padding:13px;margin-bottom:14px;}
@@ -123,12 +164,11 @@ b,strong{color:var(--terra-deep);font-weight:600;}
 .ev-price span{font-family:'Heebo',sans-serif;font-size:15px;font-weight:400;color:var(--ink-soft);margin-right:6px;}
 .ev-actions{margin-top:auto;width:100%;display:flex;flex-direction:column;gap:10px;}
 .ev-btn{width:100%;padding:13px;font-size:16px;}
-.note{text-align:center;color:var(--ink-soft);font-size:16px;margin:30px auto 0;max-width:560px;}
 
 /* PRICING */
-.pricing{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:48px;}
+.pricing{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
 .price-item{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:22px;
-  padding:32px 46px;text-align:center;min-width:250px;box-shadow:0 14px 36px rgba(74,52,33,.08);}
+  padding:34px 46px;text-align:center;min-width:260px;box-shadow:0 14px 36px rgba(74,52,33,.08);}
 .price-item.feat{border-color:rgba(201,106,63,.5);background:linear-gradient(170deg,#fffaf0,#f6e3cb);box-shadow:0 22px 50px rgba(164,73,31,.16);}
 .p-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--terra),var(--honey));
   color:#fff8ec;font-size:12px;font-weight:600;padding:5px 16px;border-radius:50px;letter-spacing:.04em;white-space:nowrap;}
@@ -137,17 +177,18 @@ b,strong{color:var(--terra-deep);font-weight:600;}
 .p-val small{font-size:22px;font-weight:400;margin-right:2px;color:var(--gold);}
 .p-was{display:block;margin-top:6px;color:var(--ink-soft);font-size:16px;}
 .p-was s{color:var(--rose);text-decoration-thickness:2px;}
+.limited{text-align:center;color:var(--terra-deep);font-weight:600;font-size:clamp(17px,2.2vw,20px);
+  margin:34px auto 0;max-width:560px;background:rgba(230,166,63,.12);border:1px solid rgba(230,166,63,.32);
+  border-radius:16px;padding:16px 22px;}
 
 /* FINAL */
 .final{background:linear-gradient(160deg,var(--sand),#e6c896);}
 .final .head h2{color:var(--terra-deep);}
 .final .hero-cta{margin-top:34px;justify-content:center;}
-
 footer{background:#3d2a15;color:#efdcbe;text-align:center;padding:56px 24px;}
-footer .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(26px,4vw,38px);color:#f4d79a;display:block;margin-bottom:12px;letter-spacing:.02em;}
-footer .fmeta{font-size:15px;color:#cbb187;}
+footer .big{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(26px,4vw,38px);color:#f4d79a;display:block;margin-bottom:10px;letter-spacing:.02em;}
+footer .fmeta{font-size:15px;color:#cbb187;line-height:1.7;}
 
-/* Floating buttons */
 .fabs{position:fixed;bottom:22px;left:22px;z-index:60;display:flex;flex-direction:column;gap:12px;}
 .fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(74,52,33,.3);transition:transform .3s ease;}
 .fab:hover{transform:translateY(-3px) scale(1.05);}
@@ -158,13 +199,10 @@ footer .fmeta{font-size:15px;color:#cbb187;}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
 .reveal.in{opacity:1;transform:none;}
 @media(max-width:760px){
-  .philo-grid{grid-template-columns:1fr;gap:30px;}
+  .duo,.bios{grid-template-columns:1fr;}
   .fab{width:52px;height:52px;}
 }
-@media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1!important;transform:none!important;}
-  *{animation:none!important;}
-}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;}*{animation:none!important;}}
 </style>
 <div dir="rtl" class="page-root">
 <div class="ambient"></div>
@@ -180,20 +218,16 @@ footer .fmeta{font-size:15px;color:#cbb187;}
   <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
 </svg>
     <h1>אומנות העינוג הטנטרי</h1>
-    <p class="sub-ital">השער לחיבור המקודש ומימוש הפוטנציאל הזוגי והמיני</p>
+    <p class="hero-sub">השער לחיבור המקודש ומימוש הפוטנציאל הזוגי והמיני</p>
     <div class="hero-type">סדנאות יום לזוגות אוהבים</div>
-    <div class="hero-meta">
-      <span class="chip">📍 פרדס חנה</span>
-      <span class="chip">🕙 <span dir="ltr">10:00–15:30</span></span>
-    </div>
     <div class="hero-cta">
       <a class="btn btn-icon" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%94%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%98%D7%A0%D7%98%D7%A8%D7%99" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
       <a class="btn ghost btn-icon" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>התקשרו אלינו</span></a>
     </div>
     <p class="cta-caption">להרשמה ותיאום · <a href="tel:+972544799145" dir="ltr">054-479-9145</a></p>
     <div class="hero-photo"><figure class="photo photo--tall reveal" data-slot="woman">
-      <div class="photo-ph"><span class="photo-ph-ic">🪷</span><span class="photo-ph-tx">אומנות עינוג האישה<br><small>התמונה תתווסף כאן</small></span></div>
-      <img class="photo-img" src="images/woman.jpg" alt="אומנות עינוג האישה" loading="lazy" onerror="this.remove()">
+      <div class="photo-ph"><span class="photo-ph-ic">🪷</span><span class="photo-ph-tx">אומנות העינוג הטנטרי<br><small>התמונה תתווסף כאן</small></span></div>
+      <img class="photo-img" src="images/woman.jpg" alt="אומנות העינוג הטנטרי" loading="lazy" onerror="this.remove()">
     </figure></div>
   </div>
 </header>
@@ -205,27 +239,98 @@ footer .fmeta{font-size:15px;color:#cbb187;}
   </div>
 </section>
 
-<!-- PHILOSOPHY + PHOTO -->
+<!-- PHILOSOPHY -->
 <section class="pad tint" id="about">
   <div class="wrap">
-    <div class="philo-grid">
-      <figure class="photo photo--wide reveal" data-slot="second">
+    <div class="philo-text">
+      <p class="reveal">בכל זוגיות קיים פוטנציאל מיני ורוחני עצום, שלרוב נשאר חבוי תחת עומס השגרה.</p>
+      <p class="reveal" style="transition-delay:120ms">בטנטרה, אנו מאמינות כי החיבור בין הזכרי לנקבי, הוא התדר הגבוה ביותר שקיים- שער להתעלות מעבר לפיזי אל עבר מפגש נשמתי עמוק, מלא תשוקה ונוכחות.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="pad statement">
+  <div class="wrap">
+    <div class="reveal"><svg class="vesica" viewBox="0 0 120 90" fill="none" aria-hidden="true">
+  <circle cx="45" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
+  <circle cx="75" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
+  <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
+</svg>
+    <p>עוברים ממיניות של "תפקידים" למיניות של התעלות וריפוי</p></div>
+  </div>
+</section>
+
+<!-- FEATURE PHOTO -->
+<section class="pad tint">
+  <div class="wrap"><figure class="photo photo--wide reveal" data-slot="second">
       <div class="photo-ph"><span class="photo-ph-ic">🪷</span><span class="photo-ph-tx">מגע טנטרי במרחב אהבה<br><small>התמונה תתווסף כאן</small></span></div>
       <img class="photo-img" src="images/couple.jpg" alt="מגע טנטרי במרחב אהבה" loading="lazy" onerror="this.remove()">
-    </figure>
-      <div class="philo-text">
-        <p class="reveal">בכל זוגיות קיים פוטנציאל מיני ורוחני עצום, שלרוב נשאר חבוי תחת עומס השגרה.</p>
-        <p class="reveal" style="transition-delay:120ms">בטנטרה, אנו מאמינות כי החיבור בין הזכרי לנקבי, הוא התדר הגבוה ביותר שקיים- שער להתעלות מעבר לפיזי אל עבר מפגש נשמתי עמוק, מלא תשוקה ונוכחות.</p>
+    </figure></div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">היום שלכם</div>
+      <h2>מה תקבלו בסדנא?</h2>
+      <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
+    </div>
+    <div class="duo">
+      <div class="duo-card reveal">
+        <h3>מה תקבלי בסדנא?</h3>
+        <p>בסדנא תגלי את מפת העונג הייחודית לך, תניחי לכל התפקידים ותתרחבי אל תוך העונג של עצמך בביטחון מלא. במרחב הזה, הגבר שלך יהיה שם עבורך — קשוב, נוכח, בנתינה מלאה ובלי שום ציפייה שתחזירי לו. הוא יהפוך עבורך למיכל, בו העולם הרגשי שלך יכול להתבטא בחופשיות דרך המגע והאינטימיות ביניכם.</p>
+      </div>
+      <div class="duo-card reveal" style="transition-delay:120ms">
+        <h3>גבר, מה אתה תקבל ביום הזה?</h3>
+        <p>בסדנא תלמד את אומנות הנוכחות. זה הזמן שלך להפוך למאהב הטנטרי שתמיד חלמת להיות, זה שיודע להחזיק מרחב מקודש, להקשיב לניואנסים הכי עדינים ולהעניק לבת הזוג שלך את המתנה של ראייה עמוקה ונוכחות עוצמתית.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MEDITATION -->
+<!-- WOMEN'S WORKSHOP -->
+<section class="pad tint">
+  <div class="wrap">
+    <div class="wk reveal">
+      <div class="eyebrow">סדנת יום · לזוג</div>
+      <h2>סדנת אומנות עינוג האישה</h2>
+      <p>נתחיל בחיבור הרגשי שלך לעצמך, תרגול הקשבה נקייה והיכולת לבטא את הרצונות והגבולות שלך ללא שיפוטיות — איך להיות חשופה באמת וליצור בסיס של ביטחון מלא.</p>
+      <h3>מה נחקור במרחב המקודש שלנו?</h3>
+      <ul class="wk-list">
+        <li>אינטימיות רגשית ותקשורת מהלב</li>
+        <li><b>עיסוי טנטרי מקודש</b>נעבור על פרקטיקה של מגע, טכניקות מגע טנטריות חושניות שנועדו להעמיק את האינטימיות, להעיר את השאקטי (האנרגיה הנשית), להזרים את אנרגיית החיים ולהפוך את העינוג לטקס של אהבה ונתינה.</li>
+        <li>תרגולים טנטריים להצתת האש והתשוקה</li>
+        <li>חיזור ופלירטוט</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MEN'S WORKSHOP -->
 <section class="pad">
   <div class="wrap">
-    <div class="medi-band reveal">
-      <svg class="vesica" viewBox="0 0 120 90" fill="none" aria-hidden="true">
+    <div class="wk reveal">
+      <div class="eyebrow">סדנת יום · לזוג</div>
+      <h2>סדנת אומנות עינוג הגבר</h2>
+      <p>מרחב מקודש ונקי מלחצים, המוקדש אך ורק לעינוג הגבר. בלי "תן וקח", בלי פנקסנות ובלי הציפייה להחזיר באותו הרגע — רק חופש מוחלט להתמסר ושעות של עונג מתמשך.</p>
+      <p><b>עבורך גבר:</b> זוהי הזדמנות להניח את השריון, להרפות לתוך התמסרות טוטאלית, ולקבל ללא תנאי וללא שום צורך "לבצע".</p>
+      <p><b>אישה:</b> הזדמנות עבורך לחקור מה באמת מענג את האהוב שלך, לאפשר לגבר שלך להתמסר, להכיר את הניואנסים שלו, ולגלות כמה עוצמה וסיפוק יש ביכולת להעניק מתוך הנאה וחיבור.</p>
+      <h3>מה נחקור בסדנה?</h3>
+      <ul class="wk-list gem">
+        <li><b>אנטומיה אנרגטית</b>השפה החבויה של הגוף ומבנה הלינגאם.</li>
+        <li><b>נתינה נשית חופשית</b>הולכת אנרגיה מהאגן אל הלב מבלי להתרוקן.</li>
+        <li><b>עיסוי טנטרי מקודש</b>טכניקות מגע חושניות, נשימה ועבודה עם שמנים אתריים.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MEDITATION -->
+<section class="pad tint">
+  <div class="wrap">
+    <div class="medi-band reveal"><svg class="vesica" viewBox="0 0 120 90" fill="none" aria-hidden="true">
   <circle cx="45" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="75" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
@@ -235,8 +340,62 @@ footer .fmeta{font-size:15px;color:#cbb187;}
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="pad">
+  <div class="wrap-narrow">
+    <div class="head reveal">
+      <div class="eyebrow">מה אומרים המשתתפים</div>
+      <h2>המלצות</h2>
+      <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
+    </div>
+    <div class="tst reveal">
+      <div class="tst-stage">
+      <blockquote class="tst-slide on"><span class="tst-qm">”</span><p>מקצועי, מדוייק ומרתק.</p></blockquote>
+      <blockquote class="tst-slide"><span class="tst-qm">”</span><p>הנחייה מקצועית ומרחב מאפשר.</p></blockquote>
+      <blockquote class="tst-slide"><span class="tst-qm">”</span><p>היה מושלם! אתן משלימות אחת את השנייה בצורה כיפית ומדוייקת. נהננו מכל מילה ורגע.</p></blockquote>
+      <blockquote class="tst-slide"><span class="tst-qm">”</span><p>החוויה שעברנו יחד היתה מדליקה וכיפית במיוחד, אין ספק שזו תחנת דלק חובה לזוג שרוצה להוסיף פלפל, רעננות וחרמנות לחיי המין שלהם.</p></blockquote>
+      <blockquote class="tst-slide"><span class="tst-qm">”</span><p>חוויה מיוחדת, מומלצת לכל זוג שרוצה לעלות דרגה בקשר. המנחות מעולות, מקצועיות וסבלניות.</p></blockquote>
+      <blockquote class="tst-slide"><span class="tst-qm">”</span><p>חוויה מעצימה ומטלטלת.</p></blockquote>
+      </div>
+      <div class="tst-dots">
+      <button class="tst-dot on" aria-label="המלצה 1"></button>
+      <button class="tst-dot" aria-label="המלצה 2"></button>
+      <button class="tst-dot" aria-label="המלצה 3"></button>
+      <button class="tst-dot" aria-label="המלצה 4"></button>
+      <button class="tst-dot" aria-label="המלצה 5"></button>
+      <button class="tst-dot" aria-label="המלצה 6"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="pad tint" id="team">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">בהנחיית</div>
+      <h2>מי אנחנו?</h2>
+      <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
+    </div>
+    <div class="bios">
+      <div class="bio reveal">
+        <div class="bio-badge"><span>ג</span><img class="bio-img" src="images/gili.jpg" alt="גילי אור ברקן" loading="lazy" onerror="this.remove()"></div>
+        <h3>גילי אור ברקן</h3>
+        <p class="role">מנחה לטנטרה תרפיה ומיניות מודעת</p>
+        <p>מלווה תהליכי עומק לריפוי, חיבור פנימי ואהבה עבור זוגות ויחידים. עובדת עם כלים נוספים מעולמות הריפוי — תרפיה בנשימה, קונסטלציה משפחתית, סאונד הילינג ופוקוסינג.</p>
+      </div>
+      <div class="bio reveal" style="transition-delay:120ms">
+        <div class="bio-badge"><span>ל</span><img class="bio-img" src="images/lilia.jpg" alt="ליליה זקס סוקול" loading="lazy" onerror="this.remove()"></div>
+        <h3>ליליה זקס סוקול</h3>
+        <p class="role">מנחה בינלאומית לטנטרה ותטא הילינג</p>
+        <p>מורה לקונדליני ואשטנגה יוגה, מטפלת זוגית ומיניות מודעת, מומחית בתת מודע. מלווה אנשים להגשמה זוגית, לחיבור רוחני עמוק ומלא תשוקה, ליצירת ביטחון ואהבה עצמית בכל רמות החיים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DATES -->
-<section class="pad tint" id="dates">
+<section class="pad" id="dates">
   <div class="wrap">
     <div class="head reveal">
       <div class="eyebrow">מועדים והרשמה</div>
@@ -252,7 +411,7 @@ footer .fmeta{font-size:15px;color:#cbb187;}
           <div class="ev-date" dir="ltr">31.07.26</div>
           <div class="ev-place">פרדס חנה</div>
           <div class="ev-time"><span class="ev-time-lbl">שעות הסדנה</span><span dir="ltr">10:00–15:30</span></div>
-          <div class="ev-price">1500<small>₪</small><span>לסדנה</span></div>
+          <div class="ev-price">1,500<small>₪</small><span>לזוג</span></div>
           <div class="ev-actions">
             <a class="btn btn-icon ev-btn" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%90%D7%99%D7%A9%D7%94%20%C2%B7%2031.7.2026" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
             <a class="btn ghost btn-icon ev-btn" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>חיוג להרשמה</span></a>
@@ -265,36 +424,44 @@ footer .fmeta{font-size:15px;color:#cbb187;}
           <div class="ev-date" dir="ltr">14.08.26</div>
           <div class="ev-place">פרדס חנה</div>
           <div class="ev-time"><span class="ev-time-lbl">שעות הסדנה</span><span dir="ltr">10:00–15:30</span></div>
-          <div class="ev-price">1500<small>₪</small><span>לסדנה</span></div>
+          <div class="ev-price">1,500<small>₪</small><span>לזוג</span></div>
           <div class="ev-actions">
             <a class="btn btn-icon ev-btn" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%E2%9C%A6%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%A1%D7%93%D7%A0%D7%AA%20%D7%90%D7%95%D7%9E%D7%A0%D7%95%D7%AA%20%D7%A2%D7%99%D7%A0%D7%95%D7%92%20%D7%94%D7%92%D7%91%D7%A8%20%C2%B7%2014.8.2026" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.8L.5 31.5l7.9-2c2.3 1.2 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1S29.1 8.8 29.1 16 23.2 28.8 16 28.8zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg><span>להרשמה בוואטסאפ</span></a>
             <a class="btn ghost btn-icon ev-btn" href="tel:+972544799145"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.5 15.5 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z"/></svg><span>חיוג להרשמה</span></a>
           </div>
         </article>
     </div>
+  </div>
+</section>
 
+<!-- PRICING -->
+<section class="pad tint">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">עלויות</div>
+      <h2>מחירים</h2>
+      <div class="divider"><span class="d-line"></span><span class="d-mark">&#10022;</span><span class="d-line"></span></div>
+    </div>
     <div class="pricing reveal">
       <div class="price-item">
-        <span class="p-label">סדנה אחת</span>
-        <span class="p-val">1500<small>₪</small></span>
+        <span class="p-label">סדנא בודדת · לזוג</span>
+        <span class="p-val">1,500<small>₪</small></span>
       </div>
       <div class="price-item feat">
-        <span class="p-tag">מבצע לשתי הסדנאות</span>
-        <span class="p-label">שתי הסדנאות<br>עינוג האישה + עינוג הגבר</span>
-        <span class="p-val">2500<small>₪</small></span>
-        <span class="p-was">במקום <s>3000<small>₪</small></s></span>
+        <span class="p-tag">חבילה משולבת</span>
+        <span class="p-label">יום גבר + יום אישה · לזוג</span>
+        <span class="p-val">2,700<small>₪</small></span>
+        <span class="p-was">במקום <s>3,000<small>₪</small></s> · בלבד!</span>
       </div>
     </div>
-
-    <p class="note reveal">להרשמה בוואטסאפ או בטלפון: <a href="tel:+972544799145" dir="ltr" style="color:var(--terra-deep);font-weight:600;">054-479-9145</a></p>
+    <p class="limited reveal">מספר המקומות מוגבל מאוד — כדי לשמור על תדר אישי ועמוק.</p>
   </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="pad final">
   <div class="wrap">
-    <div class="head reveal">
-      <svg class="vesica" viewBox="0 0 120 90" fill="none" aria-hidden="true">
+    <div class="head reveal"><svg class="vesica" viewBox="0 0 120 90" fill="none" aria-hidden="true">
   <circle cx="45" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="75" cy="45" r="34" stroke="currentColor" stroke-width="1.1"/>
   <circle cx="60" cy="45" r="3.4" fill="currentColor" stroke="none"/>
@@ -311,7 +478,7 @@ footer .fmeta{font-size:15px;color:#cbb187;}
 
 <footer>
   <span class="big">אומנות העינוג הטנטרי</span>
-  <span class="fmeta">סדנאות יום לזוגות אוהבים · פרדס חנה · © 2026 כל הזכויות שמורות</span>
+  <span class="fmeta">סדנאות יום לזוגות אוהבים · פרדס חנה<br>בהנחיית גילי אור ברקן וליליה זקס סוקול · © 2026 כל הזכויות שמורות</span>
 </footer>
 
 <div class="fabs">
@@ -320,7 +487,23 @@ footer .fmeta{font-size:15px;color:#cbb187;}
 </div>
 
 <script>
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // testimonials carousel (fade, RTL-safe)
+  (function(){
+    const slides=[...document.querySelectorAll('.tst-slide')];
+    const dots=[...document.querySelectorAll('.tst-dot')];
+    if(!slides.length) return;
+    let i=0, timer=null;
+    const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function go(n){ i=(n+slides.length)%slides.length;
+      slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+      dots.forEach((d,k)=>d.classList.toggle('on',k===i)); }
+    function start(){ if(reduce) return; stop(); timer=setInterval(()=>go(i+1),5000); }
+    function stop(){ if(timer) clearInterval(timer); }
+    dots.forEach((d,k)=>d.addEventListener('click',()=>{go(k);start();}));
+    start();
+  })();
 </script>
 </div>
