@@ -1,0 +1,632 @@
+/* ==========================================================================
+   אומנות העינוג הטנטרי — שפה עיצובית
+   פלטה שנדגמה מתוך העיצוב המקורי בקנבה
+   ========================================================================== */
+
+:root{
+  /* --- גוונים --- */
+  --cream-light:#FFFCEA;   /* פינת הזהב הבהירה של הגרדיאנט */
+  --cream:#F9F8F0;         /* רקע העמוד */
+  --cream-deep:#F4EDC3;
+  --gold:#DDCD71;          /* הזהב המרכזי */
+  --gold-deep:#C9B65B;
+  --gold-text:#B9A052;
+  --taupe:#D7CEB7;         /* פס הסדנאות הקרובות */
+  --silver:#D9D9D9;        /* פס סדנת הגבר */
+  --brown:#7E5130;         /* כותרות */
+  --brown-soft:#8E6743;
+  --brown-deep:#452922;    /* טקסט על רקע כהה יותר */
+  --tan:#B38A60;           /* כותרת משנה */
+  --rose:#D89A78;          /* דגש ורוד־אפרסק */
+  --lilac:#EDDBE5;         /* הבועות */
+  --ink:#2B2721;           /* גוף הטקסט */
+  --ink-soft:#5A5148;
+
+  /* --- שכבות --- */
+  --grad-warm:linear-gradient(to bottom right,var(--cream-light) 0%,#F6F0CB 48%,var(--gold) 100%);
+  --shadow-photo:0 22px 46px -18px rgba(92,70,26,.45), 0 4px 14px rgba(92,70,26,.10);
+  --shadow-soft:0 18px 40px -22px rgba(92,70,26,.40);
+  --shadow-btn:0 6px 16px -8px rgba(60,42,18,.45);
+
+  /* --- מקצבים --- */
+  --wrap:1080px;
+  --pad-y:clamp(58px,8vw,112px);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Heebo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:300;
+  font-size:clamp(16.5px,1.15vw + 12px,20px);
+  line-height:1.8;
+  direction:rtl;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;height:auto;display:block;}
+h1,h2,h3{margin:0;font-weight:300;line-height:1.25;letter-spacing:.005em;}
+p{margin:0 0 1.1em;}
+p:last-child{margin-bottom:0;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--gold);color:#3B2A12;}
+
+/* ספרות ותאריכים — סריף עדין, כמו במקור */
+.num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.02em;
+     font-size:1.12em;direction:ltr;unicode-bidi:isolate;display:inline-block;}
+.price .num{font-size:1.24em;}
+.shekel{font-weight:400;}
+
+/* ---------- מבנה ---------- */
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:24px;}
+.wrap--narrow{max-width:860px;}
+.wrap--form{max-width:720px;}
+.center{text-align:center;}
+
+.band{position:relative;padding-block:var(--pad-y);}
+.band--cream{background:var(--cream);}
+.band--taupe{background:var(--taupe);}
+.band--silver{background:var(--silver);}
+.band--gold{background:var(--gold);}
+.band--gradient{background:var(--grad-warm);}
+
+.band__title{
+  font-size:clamp(25px,3.1vw + 10px,40px);
+  color:var(--brown);
+  text-align:center;
+  margin-bottom:clamp(26px,4vw,46px);
+  font-weight:300;
+}
+.band__title--onGold{color:var(--brown-deep);}
+.sub-title{
+  font-size:clamp(21px,1.7vw + 12px,30px);
+  color:var(--brown-deep);
+  text-align:center;
+  margin:clamp(34px,5vw,54px) 0 clamp(16px,2vw,24px);
+}
+
+/* ==========================================================================
+   כפתורים
+   ========================================================================== */
+.btn{
+  display:inline-block;
+  background:var(--silver);
+  border:1px solid rgba(60,45,25,.42);
+  border-radius:9px;
+  padding:.72em 2.5em;
+  color:#9E7550;
+  font-family:inherit;
+  font-size:clamp(17px,.5vw + 15px,20px);
+  font-weight:500;
+  letter-spacing:.03em;
+  cursor:pointer;
+  box-shadow:var(--shadow-btn);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),
+             background-color .35s var(--ease),color .35s var(--ease);
+}
+.btn:hover,.btn:focus-visible{
+  background:#E4E0CE;
+  color:var(--brown);
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px -10px rgba(60,42,18,.5);
+}
+.btn:active{transform:translateY(0);}
+.btn--submit{border-color:rgba(60,45,25,.5);padding-inline:3.2em;}
+
+/* כפתור צף — מובייל בלבד */
+.cta-float{
+  position:fixed;
+  inset-block-end:16px;
+  inset-inline-start:50%;
+  transform:translate(50%,140%);
+  z-index:40;
+  background:var(--gold);
+  color:#4A3616;
+  font-weight:500;
+  font-size:17px;
+  letter-spacing:.03em;
+  padding:.7em 2.4em;
+  border-radius:100px;
+  box-shadow:0 10px 26px -8px rgba(80,60,15,.6);
+  transition:transform .45s var(--ease),opacity .35s var(--ease);
+  opacity:0;
+}
+.cta-float.is-visible{transform:translate(50%,0);opacity:1;}
+
+/* ==========================================================================
+   פרח הקישוט — האלמנט הגרפי החוזר
+   ========================================================================== */
+.flower{
+  width:clamp(30px,4vw,42px);
+  aspect-ratio:1;
+  margin:0 auto clamp(22px,3vw,34px);
+  background:var(--gold-deep);
+  -webkit-mask:var(--flower-mask) center/contain no-repeat;
+  mask:var(--flower-mask) center/contain no-repeat;
+  --flower-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='%23000'%3E%3Cg id='p'%3E%3Cellipse cx='50' cy='24' rx='13' ry='20'/%3E%3C/g%3E%3Cuse href='%23p' transform='rotate(45 50 50)'/%3E%3Cuse href='%23p' transform='rotate(90 50 50)'/%3E%3Cuse href='%23p' transform='rotate(135 50 50)'/%3E%3Cuse href='%23p' transform='rotate(180 50 50)'/%3E%3Cuse href='%23p' transform='rotate(225 50 50)'/%3E%3Cuse href='%23p' transform='rotate(270 50 50)'/%3E%3Cuse href='%23p' transform='rotate(315 50 50)'/%3E%3Ccircle cx='50' cy='50' r='9'/%3E%3C/g%3E%3C/svg%3E");
+}
+.flower--divider{margin-block:clamp(30px,5vw,48px);}
+.flower--light{background:rgba(255,253,240,.85);}
+.flower--sm{width:26px;margin-bottom:18px;background:var(--gold-deep);}
+
+/* ==========================================================================
+   מסך פתיחה
+   ========================================================================== */
+.hero{
+  position:relative;
+  background:var(--grad-warm);
+  padding-block:clamp(46px,7vw,86px) 0;
+  overflow:hidden;
+  isolation:isolate;
+}
+/* הילת העומק הכסופה שמאחורי הכותרת */
+.hero__orb{
+  position:absolute;
+  z-index:-1;
+  inset-block-end:-10%;
+  inset-inline-start:-22%;
+  width:min(112vw,1180px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(255,255,250,0) 0%,
+      rgba(255,255,250,0) 69.4%,
+      rgba(150,148,142,.16) 69.6%,
+      rgba(150,148,142,.16) 71.2%,
+      rgba(255,255,250,0) 71.6%),
+    radial-gradient(circle at 36% 26%,
+      rgba(128,126,120,.30) 0%,
+      rgba(160,158,151,.22) 38%,
+      rgba(208,206,198,.12) 60%,
+      rgba(249,248,240,0) 71%);
+  filter:blur(1px);
+}
+.hero__glow{
+  position:absolute;z-index:-1;inset-block-start:-30%;inset-inline-end:-18%;
+  width:min(80vw,760px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,245,.85),rgba(255,255,245,0) 68%);
+}
+.hero__inner{
+  position:relative;
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding:0 24px clamp(64px,9vw,108px);
+}
+.hero__photo{
+  margin:0 auto clamp(40px,6vw,72px);
+  max-width:min(625px,86%);
+  box-shadow:var(--shadow-photo);
+}
+.hero__photo img{width:100%;}
+
+.hero__titles{text-align:center;}
+.hero h1{
+  font-size:clamp(30px,5.2vw + 6px,62px);
+  font-weight:200;
+  color:var(--gold-text);
+  letter-spacing:.055em;
+  margin-bottom:clamp(20px,3vw,34px);
+  text-shadow:0 1px 0 rgba(255,255,255,.5);
+}
+.hero__kicker{
+  font-size:clamp(23px,3.4vw + 8px,45px);
+  font-weight:200;
+  color:var(--tan);
+  letter-spacing:.035em;
+  margin-bottom:clamp(24px,3.5vw,42px);
+}
+.hero__gate{
+  font-size:clamp(20px,2.4vw + 8px,38px);
+  font-weight:300;
+  color:var(--brown);
+  line-height:1.5;
+  letter-spacing:.015em;
+  margin-bottom:clamp(30px,4vw,46px);
+}
+
+/* ==========================================================================
+   הסדנאות הקרובות
+   ========================================================================== */
+.dates__grid{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.datecard h3{
+  font-size:clamp(21px,1.8vw + 12px,30px);
+  color:var(--brown);
+  margin-bottom:.5em;
+  font-weight:400;
+}
+.datecard__list{list-style:none;margin:0;padding:0;}
+.datecard__list li{
+  color:var(--brown-soft);
+  font-size:clamp(17px,.7vw + 14px,21px);
+  line-height:1.95;
+}
+.datecard__list i{opacity:.55;font-style:normal;margin-inline:.35em;}
+.datecard__place{
+  margin-top:.35em;
+  color:var(--brown);
+  font-size:clamp(16.5px,.5vw + 14px,19px);
+  letter-spacing:.06em;
+}
+
+/* ==========================================================================
+   פתח דבר
+   ========================================================================== */
+.intro{padding-block-end:0;}
+.lead{
+  text-align:center;
+  font-size:clamp(18px,1.5vw + 13px,26px);
+  line-height:1.72;
+  font-weight:300;
+  color:var(--ink);
+  max-width:24em;
+  margin-inline:auto;
+}
+.lead--sm{font-size:clamp(17px,.9vw + 13.5px,21px);max-width:34em;color:var(--brown-deep);}
+.intro .center{margin-top:clamp(30px,4vw,46px);}
+
+.photo{margin:clamp(52px,7vw,92px) auto 0;padding:0;}
+.photo--wide{max-width:min(938px,100%);}
+.photo img{width:100%;}
+
+/* ==========================================================================
+   סדנת האישה
+   ========================================================================== */
+.eyebrow{
+  text-align:center;
+  color:var(--rose);
+  font-size:clamp(20px,1.7vw + 12px,29px);
+  font-weight:300;
+  letter-spacing:.03em;
+  margin-bottom:clamp(26px,3.5vw,42px);
+}
+.qa{margin-bottom:clamp(38px,5vw,62px);}
+.qa:last-child{margin-bottom:0;}
+.qa h2{
+  text-align:center;
+  font-size:clamp(22px,2vw + 12px,33px);
+  color:var(--brown);
+  margin-bottom:clamp(16px,2vw,26px);
+  font-weight:300;
+}
+.qa p{
+  text-align:center;
+  color:var(--brown-deep);
+  font-size:clamp(16.5px,.8vw + 13.5px,20px);
+  line-height:1.82;
+  max-width:36em;
+  margin-inline:auto;
+}
+
+/* ==========================================================================
+   מה נחקור
+   ========================================================================== */
+.explore__list{display:grid;gap:clamp(30px,4.5vw,52px);}
+.topic{text-align:center;}
+.topic h3{
+  font-size:clamp(20px,1.5vw + 12px,27px);
+  color:var(--brown-deep);
+  margin-bottom:.55em;
+  font-weight:400;
+}
+.topic p{
+  color:var(--tan);
+  font-size:clamp(16.5px,.8vw + 13.5px,20px);
+  max-width:38em;
+  margin-inline:auto;
+  line-height:1.8;
+}
+
+/* ==========================================================================
+   סדנת הגבר
+   ========================================================================== */
+.man .band__title{color:var(--brown-deep);}
+.pair{
+  display:grid;
+  gap:clamp(24px,3.5vw,44px);
+  margin-top:clamp(34px,4.5vw,54px);
+  text-align:center;
+}
+.pair__col h3{
+  font-size:clamp(19px,1.2vw + 13px,24px);
+  color:var(--brown);
+  margin-bottom:.45em;
+  font-weight:500;
+}
+.pair__col p{
+  color:var(--brown-deep);
+  font-size:clamp(16.5px,.7vw + 14px,19.5px);
+  max-width:30em;margin-inline:auto;
+}
+.gems{list-style:none;margin:0;padding:0;text-align:center;}
+.gems li{
+  color:var(--brown-deep);
+  font-size:clamp(16.5px,.8vw + 13.5px,20px);
+  line-height:1.8;
+  max-width:40em;
+  margin:0 auto .85em;
+  padding-inline-start:0;
+}
+.gems li::before{
+  content:"";
+  display:inline-block;
+  width:.62em;height:.62em;
+  margin-inline-end:.6em;
+  background:var(--gold-deep);
+  transform:rotate(45deg) translateY(-.05em);
+  border-radius:2px;
+}
+.gems strong{font-weight:500;color:var(--brown);}
+
+/* ==========================================================================
+   משפט מפתח
+   ========================================================================== */
+.statement{padding-block:clamp(46px,6vw,80px);}
+.statement p{
+  text-align:center;
+  color:var(--brown-deep);
+  font-size:clamp(20px,1.9vw + 12px,32px);
+  font-weight:300;
+  line-height:1.5;
+  letter-spacing:.015em;
+  max-width:24em;
+  margin-inline:auto;
+}
+
+/* ==========================================================================
+   הבועה הליליכית
+   ========================================================================== */
+.blob{
+  position:relative;
+  width:clamp(210px,26vw,300px);
+  aspect-ratio:2.05/1;
+  margin:0 auto clamp(46px,6vw,72px);
+  display:grid;
+  place-items:center;
+  filter:drop-shadow(0 10px 20px rgba(120,90,110,.16));
+}
+.blob::before{
+  content:"";
+  position:absolute;inset:0;
+  background:var(--lilac);
+  border-radius:47% 53% 58% 42% / 61% 39% 61% 39%;
+  transform:rotate(-1.6deg);
+}
+.blob span{
+  position:relative;
+  color:var(--brown-deep);
+  font-size:clamp(18px,1.2vw + 13px,24px);
+  font-weight:400;
+  letter-spacing:.03em;
+}
+
+/* ==========================================================================
+   מי אנחנו
+   ========================================================================== */
+.person{
+  display:grid;
+  grid-template-columns:minmax(0,300px) minmax(0,1fr);
+  gap:clamp(26px,4vw,56px);
+  align-items:center;
+  margin-bottom:clamp(50px,7vw,86px);
+}
+.person:last-child{margin-bottom:0;}
+.person__photo{margin:0;}
+.person__photo img{
+  width:100%;
+  background:#fff;
+  padding:10px;
+  box-shadow:var(--shadow-soft);
+}
+.person__text h3{
+  font-size:clamp(24px,2.2vw + 12px,36px);
+  color:var(--brown);
+  margin-bottom:clamp(14px,1.6vw,22px);
+  font-weight:300;
+  letter-spacing:.02em;
+}
+.person__text p{
+  color:var(--ink-soft);
+  font-size:clamp(16.5px,.8vw + 13.5px,19.5px);
+  line-height:1.78;
+  margin-bottom:.7em;
+}
+
+/* ==========================================================================
+   עלויות — העיגול
+   ========================================================================== */
+.circle{
+  width:min(92vw,620px);
+  aspect-ratio:1;
+  margin-inline:auto;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 42% 34%,#FCF8DF 0%,#F7F0C4 55%,#EFE6AE 100%);
+  box-shadow:0 30px 60px -26px rgba(96,74,20,.5),
+             inset 0 0 60px rgba(255,255,255,.55);
+  padding:clamp(28px,6vw,64px);
+  text-align:center;
+}
+.circle__inner{max-width:26em;}
+.price{
+  color:var(--brown-deep);
+  font-size:clamp(16px,1vw + 13px,21px);
+  line-height:1.65;
+  margin-bottom:1.1em;
+}
+.price b{font-weight:500;color:var(--brown);}
+.price--hl b{color:#8B4E24;}
+.note{
+  color:var(--brown-soft);
+  font-size:clamp(14.5px,.6vw + 12.5px,17.5px);
+  line-height:1.6;
+  margin-bottom:1.6em;
+}
+.circle .btn{font-size:clamp(15.5px,.5vw + 13.5px,18px);padding:.62em 2.1em;}
+
+/* ==========================================================================
+   מה מספרים
+   ========================================================================== */
+.voices__grid{
+  display:grid;
+  gap:clamp(16px,2.2vw,26px);
+  grid-template-columns:1fr;
+}
+.voices blockquote{
+  margin:0;
+  background:rgba(255,253,242,.42);
+  border:1px solid rgba(255,255,245,.55);
+  border-radius:14px;
+  padding:clamp(20px,3vw,30px) clamp(20px,3vw,32px);
+  color:var(--brown-deep);
+  font-size:clamp(16px,.8vw + 13px,19px);
+  line-height:1.75;
+  text-align:center;
+  position:relative;
+  backdrop-filter:blur(2px);
+}
+.voices blockquote::before{
+  content:"”";
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.4em;
+  line-height:.1;
+  margin-bottom:.42em;
+  color:rgba(110,72,34,.30);
+}
+
+/* ==========================================================================
+   טופס
+   ========================================================================== */
+.form__intro{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:clamp(16.5px,.7vw + 14px,19px);
+  margin-bottom:clamp(28px,4vw,44px);
+  max-width:28em;
+  margin-inline:auto;
+}
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(14px,2vw,22px);
+  background:linear-gradient(to bottom right,#FFFDF2,#F6F1D9);
+  border:1px solid rgba(190,170,110,.34);
+  border-radius:20px;
+  padding:clamp(22px,4vw,44px);
+  box-shadow:var(--shadow-soft);
+}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0;}
+.field--full{grid-column:1/-1;}
+.field label{
+  font-size:clamp(14.5px,.4vw + 13px,16.5px);
+  color:var(--brown);
+  letter-spacing:.02em;
+  font-weight:400;
+}
+.field input,.field select,.field textarea{
+  font-family:inherit;
+  font-size:16px;              /* מונע זום אוטומטי ב-iOS */
+  font-weight:300;
+  color:var(--ink);
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(160,140,95,.38);
+  border-radius:10px;
+  padding:.72em .9em;
+  width:100%;
+  transition:border-color .3s var(--ease),box-shadow .3s var(--ease),background-color .3s var(--ease);
+}
+.field textarea{resize:vertical;min-height:110px;line-height:1.6;}
+.field select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237E5130' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 1em center;background-size:12px;padding-inline-end:2.7em;}
+.field input::placeholder,.field textarea::placeholder{color:#B3AA99;}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;
+  background:#fff;
+  border-color:var(--gold-deep);
+  box-shadow:0 0 0 3px rgba(221,205,113,.3);
+}
+.field input:user-invalid{border-color:#C98A70;}
+.form__status{
+  margin:1em 0 0;
+  min-height:1.5em;
+  font-size:15.5px;
+  color:var(--brown);
+}
+.form__status.is-error{color:#B4603F;}
+
+/* ==========================================================================
+   פוטר
+   ========================================================================== */
+.footer{
+  background:var(--grad-warm);
+  padding-block:clamp(44px,6vw,72px);
+  text-align:center;
+}
+.footer__title{
+  font-size:clamp(20px,1.6vw + 13px,27px);
+  color:var(--gold-text);
+  font-weight:200;
+  letter-spacing:.06em;
+  margin-bottom:.35em;
+}
+.footer__sub{color:var(--brown);font-size:clamp(15.5px,.5vw + 13.5px,18px);margin-bottom:.5em;}
+.footer__names{color:var(--tan);font-size:clamp(14.5px,.4vw + 13px,16.5px);letter-spacing:.04em;margin:0;}
+
+/* ==========================================================================
+   אנימציות כניסה
+   ========================================================================== */
+.reveal{opacity:0;transform:translateY(22px);}
+.js .reveal{transition:opacity .85s var(--ease),transform .85s var(--ease);}
+.reveal.is-in{opacity:1;transform:none;}
+.reveal[data-delay="1"]{transition-delay:.1s;}
+.reveal[data-delay="2"]{transition-delay:.2s;}
+.reveal[data-delay="3"]{transition-delay:.3s;}
+html:not(.js) .reveal{opacity:1;transform:none;}
+
+/* ==========================================================================
+   נקודות שבירה
+   ========================================================================== */
+@media (min-width:700px){
+  .pair{grid-template-columns:1fr 1fr;text-align:center;}
+  .voices__grid{grid-template-columns:1fr 1fr;}
+  .voices blockquote:first-child,
+  .voices blockquote.last{grid-column:1/-1;}
+}
+@media (min-width:900px){
+  .explore__list{gap:clamp(34px,4vw,54px);}
+}
+
+@media (max-width:700px){
+  .person{grid-template-columns:1fr;justify-items:center;text-align:center;gap:22px;}
+  .person__photo{max-width:250px;}
+  .person__text p{max-width:32em;}
+  .hero__photo{max-width:100%;}
+  .circle{
+    width:100%;
+    aspect-ratio:auto;
+    border-radius:34px;
+    padding:clamp(30px,8vw,46px) clamp(22px,6vw,34px);
+  }
+  .form{grid-template-columns:1fr;}
+  body{line-height:1.75;}
+}
+
+@media (max-width:420px){
+  .blob{width:min(88vw,240px);}
+  .btn{padding:.7em 2em;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  .cta-float{transition:none;}
+  *{animation-duration:.01ms!important;}
+}
