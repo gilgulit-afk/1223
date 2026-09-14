@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [claude/epic-wright-osshcw]
+    branches: [claude/epic-wright-osshcw, claude/winter-nights-landing-9mrt3m]
+  workflow_dispatch:
 permissions:
   contents: read
   pages: write
