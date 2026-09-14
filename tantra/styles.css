@@ -59,8 +59,13 @@ a{color:inherit;text-decoration:none;}
 /* ספרות ותאריכים — סריף עדין, כמו במקור */
 .num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.02em;
      font-size:1.12em;direction:ltr;unicode-bidi:isolate;display:inline-block;}
-.price .num{font-size:1.24em;}
-.shekel{font-weight:400;}
+.price .num{font-size:1.5em;}
+.price .shekel{
+  font-family:'Heebo',sans-serif;   /* ל-Cormorant אין גליף ₪ */
+  font-size:1.12em;
+  font-weight:400;
+  margin-inline-start:.08em;
+}
 
 /* ---------- מבנה ---------- */
 .wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:24px;}
@@ -243,8 +248,9 @@ a{color:inherit;text-decoration:none;}
 .datecard__list{list-style:none;margin:0;padding:0;}
 .datecard__list li{
   color:var(--brown-soft);
-  font-size:clamp(17px,.7vw + 14px,21px);
-  line-height:1.95;
+  font-size:clamp(19px,1vw + 15px,26px);
+  line-height:1.9;
+  white-space:nowrap;
 }
 .datecard__list i{opacity:.55;font-style:normal;margin-inline:.35em;}
 .datecard__place{
@@ -459,8 +465,10 @@ a{color:inherit;text-decoration:none;}
   font-size:clamp(16px,1vw + 13px,21px);
   line-height:1.65;
   margin-bottom:1.1em;
+  text-wrap:balance;
 }
 .price b{font-weight:500;color:var(--brown);}
+.price .nb{white-space:nowrap;}
 .price--hl b{color:#8B4E24;}
 .note{
   color:var(--brown-soft);
@@ -491,14 +499,11 @@ a{color:inherit;text-decoration:none;}
   position:relative;
   backdrop-filter:blur(2px);
 }
-.voices blockquote::before{
-  content:"”";
-  display:block;
-  font-family:'Cormorant Garamond',serif;
-  font-size:3.4em;
-  line-height:.1;
-  margin-bottom:.42em;
-  color:rgba(110,72,34,.30);
+.voices blockquote::before{content:"”";}
+.voices blockquote::after{content:"”";}
+.voices blockquote::before,
+.voices blockquote::after{
+  color:rgba(110,72,34,.55);
 }
 
 /* ==========================================================================
