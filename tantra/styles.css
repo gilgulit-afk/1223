@@ -59,7 +59,8 @@ a{color:inherit;text-decoration:none;}
 /* ספרות ותאריכים — סריף עדין, כמו במקור */
 .num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:.02em;
      font-size:1.12em;direction:ltr;unicode-bidi:isolate;display:inline-block;}
-.price .num{font-size:1.5em;}
+.price .num{font-family:'Playfair Display',Georgia,serif;font-size:1.42em;
+            font-weight:600;font-variant-numeric:lining-nums;letter-spacing:.005em;}
 .price .shekel{
   font-family:'Heebo',sans-serif;   /* ל-Cormorant אין גליף ₪ */
   font-size:1.12em;
@@ -238,27 +239,62 @@ a{color:inherit;text-decoration:none;}
 /* ==========================================================================
    הסדנאות הקרובות
    ========================================================================== */
-.dates__grid{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.dates__grid{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
+.datecard{width:100%;max-width:760px;}
 .datecard h3{
-  font-size:clamp(21px,1.8vw + 12px,30px);
+  font-size:clamp(22px,1.9vw + 12px,32px);
   color:var(--brown);
-  margin-bottom:.5em;
+  margin-bottom:clamp(16px,2vw,24px);
   font-weight:400;
 }
-.datecard__list{list-style:none;margin:0;padding:0;}
-.datecard__list li{
-  color:var(--brown-soft);
-  font-size:clamp(19px,1vw + 15px,26px);
-  line-height:1.9;
-  white-space:nowrap;
+
+/* כרטיס תאריך לחיץ */
+.slots{display:grid;gap:clamp(12px,1.6vw,18px);}
+.slot{
+  display:block;
+  background:linear-gradient(to bottom right,rgba(255,253,244,.94),rgba(250,246,226,.88));
+  border:1px solid rgba(146,118,74,.28);
+  border-radius:16px;
+  padding:clamp(18px,2.6vw,26px) clamp(16px,3vw,30px);
+  box-shadow:0 10px 24px -16px rgba(92,70,26,.55);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),
+             border-color .3s var(--ease),background-color .3s var(--ease);
 }
-.datecard__list i{opacity:.55;font-style:normal;margin-inline:.35em;}
-.datecard__place{
-  margin-top:.35em;
+.slot:hover,.slot:focus-visible{
+  transform:translateY(-3px);
+  border-color:var(--gold-deep);
+  box-shadow:0 18px 34px -18px rgba(92,70,26,.6);
+  outline:none;
+}
+.slot:focus-visible{box-shadow:0 0 0 3px rgba(221,205,113,.55),0 18px 34px -18px rgba(92,70,26,.6);}
+.slot:active{transform:translateY(-1px);}
+.slot__date{
+  display:block;
   color:var(--brown);
-  font-size:clamp(16.5px,.5vw + 14px,19px);
-  letter-spacing:.06em;
+  font-size:clamp(28px,2.6vw + 16px,42px);
+  line-height:1.15;
+  letter-spacing:.01em;
 }
+.slot__meta{
+  display:block;
+  margin-top:.45em;
+  color:var(--brown-soft);
+  font-size:clamp(17px,.7vw + 14px,21px);
+  letter-spacing:.02em;
+}
+.slot__meta i{font-style:normal;opacity:.5;margin-inline:.4em;}
+.slot__cta{
+  display:inline-block;
+  margin-top:clamp(12px,1.6vw,18px);
+  color:#9E7550;
+  font-size:clamp(15px,.4vw + 13.5px,17px);
+  font-weight:500;
+  letter-spacing:.04em;
+  border-bottom:1px solid rgba(158,117,80,.4);
+  padding-bottom:2px;
+  transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.slot:hover .slot__cta{color:var(--brown);border-color:var(--brown);}
 
 /* ==========================================================================
    פתח דבר
@@ -479,34 +515,6 @@ a{color:inherit;text-decoration:none;}
 .circle .btn{font-size:clamp(15.5px,.5vw + 13.5px,18px);padding:.62em 2.1em;}
 
 /* ==========================================================================
-   מה מספרים
-   ========================================================================== */
-.voices__grid{
-  display:grid;
-  gap:clamp(16px,2.2vw,26px);
-  grid-template-columns:1fr;
-}
-.voices blockquote{
-  margin:0;
-  background:rgba(255,253,242,.42);
-  border:1px solid rgba(255,255,245,.55);
-  border-radius:14px;
-  padding:clamp(20px,3vw,30px) clamp(20px,3vw,32px);
-  color:var(--brown-deep);
-  font-size:clamp(16px,.8vw + 13px,19px);
-  line-height:1.75;
-  text-align:center;
-  position:relative;
-  backdrop-filter:blur(2px);
-}
-.voices blockquote::before{content:"”";}
-.voices blockquote::after{content:"”";}
-.voices blockquote::before,
-.voices blockquote::after{
-  color:rgba(110,72,34,.55);
-}
-
-/* ==========================================================================
    טופס
    ========================================================================== */
 .form__intro{
@@ -601,9 +609,6 @@ html:not(.js) .reveal{opacity:1;transform:none;}
    ========================================================================== */
 @media (min-width:700px){
   .pair{grid-template-columns:1fr 1fr;text-align:center;}
-  .voices__grid{grid-template-columns:1fr 1fr;}
-  .voices blockquote:first-child,
-  .voices blockquote.last{grid-column:1/-1;}
 }
 @media (min-width:900px){
   .explore__list{gap:clamp(34px,4vw,54px);}
@@ -622,6 +627,8 @@ html:not(.js) .reveal{opacity:1;transform:none;}
   }
   .form{grid-template-columns:1fr;}
   body{line-height:1.75;}
+  .slot{padding:20px 16px;border-radius:14px;}
+  .slot__date{font-size:clamp(26px,7.4vw,34px);}
 }
 
 @media (max-width:420px){
@@ -634,4 +641,100 @@ html:not(.js) .reveal{opacity:1;transform:none;}
   .reveal{opacity:1!important;transform:none!important;transition:none!important;}
   .cta-float{transition:none;}
   *{animation-duration:.01ms!important;}
+}
+
+/* ==========================================================================
+   מסך המעבר לוואטסאפ
+   ========================================================================== */
+.wa-overlay[hidden]{display:none!important;}   /* display:grid גובר על תכונת hidden */
+.wa-overlay{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:radial-gradient(circle at 30% 20%,rgba(64,48,18,.46),rgba(40,30,12,.66));
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  animation:waFade .28s var(--ease);
+}
+.wa-card{
+  position:relative;
+  width:min(100%,440px);
+  max-height:calc(100dvh - 40px);
+  overflow-y:auto;
+  text-align:center;
+  background:radial-gradient(circle at 44% 26%,#FDFAE6 0%,#F8F2CC 58%,#F0E7B2 100%);
+  border:1px solid rgba(190,166,96,.5);
+  border-radius:26px;
+  padding:clamp(28px,5vw,40px) clamp(22px,4.5vw,36px) clamp(24px,4vw,32px);
+  box-shadow:0 34px 60px -26px rgba(52,38,10,.7);
+  animation:waRise .38s var(--ease);
+}
+.wa-title{
+  font-size:clamp(21px,1.6vw + 14px,27px);
+  color:var(--brown);
+  font-weight:300;
+  margin-bottom:.5em;
+}
+.wa-sub{
+  color:var(--brown-soft);
+  font-size:clamp(15px,.5vw + 13.5px,17px);
+  line-height:1.65;
+  margin-bottom:1.25em;
+}
+.wa-msg{
+  background:rgba(255,255,250,.72);
+  border:1px solid rgba(190,166,96,.38);
+  border-radius:14px;
+  padding:clamp(14px,2.4vw,18px) clamp(14px,2.6vw,20px);
+  color:var(--brown-deep);
+  font-size:clamp(15.5px,.5vw + 14px,18px);
+  line-height:1.7;
+  margin-bottom:clamp(20px,3vw,26px);
+}
+.btn--wa{
+  display:block;
+  background:linear-gradient(to bottom right,#E3D486,var(--gold));
+  border-color:rgba(120,96,40,.45);
+  color:#4A3616;
+  font-weight:500;
+}
+.btn--wa:hover,.btn--wa:focus-visible{
+  background:linear-gradient(to bottom right,#EADD97,#D9C863);
+  color:#3D2C10;
+}
+.wa-back{
+  display:block;
+  margin:clamp(14px,2vw,18px) auto 0;
+  background:none;
+  border:0;
+  color:var(--brown-soft);
+  font-family:inherit;
+  font-size:15.5px;
+  letter-spacing:.02em;
+  cursor:pointer;
+  padding:6px 10px;
+  border-radius:8px;
+}
+.wa-back:hover{color:var(--brown);text-decoration:underline;}
+.wa-close{
+  position:absolute;
+  inset-block-start:10px;
+  inset-inline-start:12px;
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  background:none;border:0;
+  color:var(--brown-soft);
+  font-size:26px;line-height:1;
+  cursor:pointer;
+  border-radius:50%;
+  transition:background-color .25s var(--ease),color .25s var(--ease);
+}
+.wa-close:hover{background:rgba(160,130,70,.14);color:var(--brown);}
+@keyframes waFade{from{opacity:0;}to{opacity:1;}}
+@keyframes waRise{from{opacity:0;transform:translateY(16px) scale(.97);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){
+  .wa-overlay,.wa-card{animation:none;}
 }
