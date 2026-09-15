@@ -114,8 +114,9 @@ document.documentElement.classList.add('js');
 
 /* ---------- טופס ההרשמה — שליחה אמיתית למייל ---------- */
 (function signup () {
-  const form = document.getElementById('signupForm');
+  const form   = document.getElementById('signupForm');
   const status = document.getElementById('formStatus');
+  const waBtn  = document.getElementById('formWa');
   if (!form) return;
 
   const btn = form.querySelector('button[type="submit"]');
@@ -126,21 +127,11 @@ document.documentElement.classList.add('js');
     status.classList.toggle('is-error', !!isError);
   }
 
-  function mailtoFallback (data, body) {
-    // אם השליחה בשרת נחסמה — נפתחת הודעת מייל מוכנה לשליחה
-    const url = 'mailto:' + CONTACT.EMAIL +
-      '?subject=' + encodeURIComponent('הרשמה לסדנה — ' + data.name) +
-      '&body=' + encodeURIComponent(body);
-    window.location.href = url;
-    form.classList.add('is-sent');
-    say('פתחנו עבורכם הודעת מייל מוכנה — נותר רק ללחוץ שליחה 🌼');
-  }
-
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
 
-    const data = Object.fromEntries(new FormData(form).entries());
-    const name = (data.name || '').trim();
+    const data  = Object.fromEntries(new FormData(form).entries());
+    const name  = (data.name || '').trim();
     const phone = (data.phone || '').trim();
 
     if (!name || !phone) {
@@ -149,7 +140,47 @@ document.documentElement.classList.add('js');
       return;
     }
 
-    const body = [
+    if (waBtn) waBtn.hidden = true;
+    if (btn) { btn.disabled = true; btn.textContent = 'שולחים…'; }
+    say('');
+
+    const payload = {
+      _subject: 'הרשמה לסדנה — ' + name,
+      _template: 'table',
+      _captcha: 'false',
+      'שם מלא': name,
+      'טלפון': phone,
+      'אימייל': data.email ? data.email.trim() : '—',
+      'סדנה': data.workshop,
+      'הערות': (data.message || '').trim() || '—'
+    };
+
+    let delivered = false;
+    try {
+      const res = await fetch(CONTACT.FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const out = await res.json().catch(() => ({}));
+      // השרת מאשר מסירה רק כאשר success אמיתי חוזר
+      delivered = res.ok && String(out.success) === 'true';
+    } catch (err) {
+      delivered = false;
+    }
+
+    if (btn) { btn.disabled = false; btn.textContent = btnText; }
+
+    if (delivered) {
+      form.reset();
+      say('הפרטים נשלחו, תודה מכל הלב 🌼 נחזור אליכם באופן אישי בהקדם.');
+      return;
+    }
+
+    /* לא הצלחנו למסור — לא מציגים הצלחה כוזבת,
+       ומציעים את הערוץ שעובד תמיד, עם הפרטים כבר בפנים. */
+    const lines = [
+      'היי, אשמח להירשם לסדנה',
       'שם: ' + name,
       'טלפון: ' + phone,
       data.email ? 'אימייל: ' + data.email.trim() : null,
@@ -157,34 +188,13 @@ document.documentElement.classList.add('js');
       (data.message || '').trim() ? 'הערות: ' + data.message.trim() : null
     ].filter(Boolean).join('\n');
 
-    if (btn) { btn.disabled = true; btn.textContent = 'שולחים…'; }
-    say('');
-
-    try {
-      const res = await fetch(CONTACT.FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: 'הרשמה לסדנה — ' + name,
-          _template: 'table',
-          _captcha: 'false',
-          'שם מלא': name,
-          'טלפון': phone,
-          'אימייל': data.email || '—',
-          'סדנה': data.workshop,
-          'הערות': data.message || '—'
-        })
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-
-      form.reset();
-      form.classList.add('is-sent');
-      say('הפרטים נשלחו, תודה מכל הלב 🌼 נחזור אליכם באופן אישי בהקדם.');
-    } catch (err) {
-      // חסימת רשת / דפדפן — נופלים להודעת מייל מוכנה
-      mailtoFallback({ name }, body);
-    } finally {
-      if (btn) { btn.disabled = false; btn.textContent = btnText; }
+    say('השליחה מכאן לא צלחה כרגע. הפרטים שמורים בטופס — אפשר לשלוח אותם אלינו בוואטסאפ בלחיצה אחת:', true);
+    if (waBtn) {
+      waBtn.hidden = false;
+      waBtn.dataset.wa = '';
+      waBtn.dataset.msg = lines;
+      waBtn.href = 'https://wa.me/' + CONTACT.WHATSAPP + '?text=' + encodeURIComponent(lines);
+      waBtn.focus();
     }
   });
 })();

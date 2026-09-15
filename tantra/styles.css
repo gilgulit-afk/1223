@@ -175,7 +175,8 @@ a{color:inherit;text-decoration:none;}
   position:absolute;
   z-index:-1;
   inset-block-end:-10%;
-  inset-inline-start:-22%;
+  left:50%;                      /* פיזי בכוונה: ממורכז בשני כיווני הכתיבה */
+  transform:translateX(-50%);
   width:min(112vw,1180px);
   aspect-ratio:1;
   border-radius:50%;
@@ -275,14 +276,21 @@ a{color:inherit;text-decoration:none;}
   line-height:1.15;
   letter-spacing:.01em;
 }
-.slot__meta{
+.slot__time{
   display:block;
-  margin-top:.45em;
+  margin-top:.12em;
+  color:var(--brown);
+  font-size:clamp(28px,2.6vw + 16px,42px);   /* זהה בדיוק לגודל התאריך */
+  line-height:1.15;
+  letter-spacing:.01em;
+}
+.slot__place{
+  display:block;
+  margin-top:.5em;
   color:var(--brown-soft);
   font-size:clamp(17px,.7vw + 14px,21px);
-  letter-spacing:.02em;
+  letter-spacing:.06em;
 }
-.slot__meta i{font-style:normal;opacity:.5;margin-inline:.4em;}
 .slot__cta{
   display:inline-block;
   margin-top:clamp(12px,1.6vw,18px);
@@ -575,6 +583,13 @@ a{color:inherit;text-decoration:none;}
 }
 .form__status.is-error{color:#B4603F;}
 
+.form__wa{
+  margin-top:14px;
+  max-width:320px;
+  margin-inline:auto;
+}
+.form__wa[hidden]{display:none!important;}
+
 /* ==========================================================================
    פוטר
    ========================================================================== */
@@ -628,7 +643,7 @@ html:not(.js) .reveal{opacity:1;transform:none;}
   .form{grid-template-columns:1fr;}
   body{line-height:1.75;}
   .slot{padding:20px 16px;border-radius:14px;}
-  .slot__date{font-size:clamp(26px,7.4vw,34px);}
+  .slot__date,.slot__time{font-size:clamp(26px,7.4vw,34px);}
 }
 
 @media (max-width:420px){
