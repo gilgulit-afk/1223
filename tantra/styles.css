@@ -122,7 +122,8 @@ a{color:inherit;text-decoration:none;}
   box-shadow:0 12px 24px -10px rgba(60,42,18,.5);
 }
 .btn:active{transform:translateY(0);}
-.btn--submit{border-color:rgba(60,45,25,.5);padding-inline:3.2em;}
+
+.btn--lg{padding:.82em 3em;font-size:clamp(18px,.6vw + 15.5px,21px);}
 
 /* כפתור צף — מובייל בלבד */
 .cta-float{
@@ -523,76 +524,10 @@ a{color:inherit;text-decoration:none;}
 .circle .btn{font-size:clamp(15.5px,.5vw + 13.5px,18px);padding:.62em 2.1em;}
 
 /* ==========================================================================
-   טופס
-   ========================================================================== */
-.form__intro{
-  text-align:center;
-  color:var(--ink-soft);
-  font-size:clamp(16.5px,.7vw + 14px,19px);
-  margin-bottom:clamp(28px,4vw,44px);
-  max-width:28em;
-  margin-inline:auto;
-}
-.form{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:clamp(14px,2vw,22px);
-  background:linear-gradient(to bottom right,#FFFDF2,#F6F1D9);
-  border:1px solid rgba(190,170,110,.34);
-  border-radius:20px;
-  padding:clamp(22px,4vw,44px);
-  box-shadow:var(--shadow-soft);
-}
-.field{display:flex;flex-direction:column;gap:8px;min-width:0;}
-.field--full{grid-column:1/-1;}
-.field label{
-  font-size:clamp(14.5px,.4vw + 13px,16.5px);
-  color:var(--brown);
-  letter-spacing:.02em;
-  font-weight:400;
-}
-.field input,.field select,.field textarea{
-  font-family:inherit;
-  font-size:16px;              /* מונע זום אוטומטי ב-iOS */
-  font-weight:300;
-  color:var(--ink);
-  background:rgba(255,255,255,.72);
-  border:1px solid rgba(160,140,95,.38);
-  border-radius:10px;
-  padding:.72em .9em;
-  width:100%;
-  transition:border-color .3s var(--ease),box-shadow .3s var(--ease),background-color .3s var(--ease);
-}
-.field textarea{resize:vertical;min-height:110px;line-height:1.6;}
-.field select{appearance:none;cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237E5130' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:left 1em center;background-size:12px;padding-inline-end:2.7em;}
-.field input::placeholder,.field textarea::placeholder{color:#B3AA99;}
-.field input:focus,.field select:focus,.field textarea:focus{
-  outline:none;
-  background:#fff;
-  border-color:var(--gold-deep);
-  box-shadow:0 0 0 3px rgba(221,205,113,.3);
-}
-.field input:user-invalid{border-color:#C98A70;}
-.form__status{
-  margin:1em 0 0;
-  min-height:1.5em;
-  font-size:15.5px;
-  color:var(--brown);
-}
-.form__status.is-error{color:#B4603F;}
-
-.form__wa{
-  margin-top:14px;
-  max-width:320px;
-  margin-inline:auto;
-}
-.form__wa[hidden]{display:none!important;}
-
-/* ==========================================================================
    פוטר
    ========================================================================== */
+.registration .band__title{margin-bottom:clamp(28px,4vw,42px);}
+
 .footer{
   background:var(--grad-warm);
   padding-block:clamp(44px,6vw,72px);
@@ -640,7 +575,6 @@ html:not(.js) .reveal{opacity:1;transform:none;}
     border-radius:34px;
     padding:clamp(30px,8vw,46px) clamp(22px,6vw,34px);
   }
-  .form{grid-template-columns:1fr;}
   body{line-height:1.75;}
   .slot{padding:20px 16px;border-radius:14px;}
   .slot__date,.slot__time{font-size:clamp(26px,7.4vw,34px);}
@@ -656,100 +590,4 @@ html:not(.js) .reveal{opacity:1;transform:none;}
   .reveal{opacity:1!important;transform:none!important;transition:none!important;}
   .cta-float{transition:none;}
   *{animation-duration:.01ms!important;}
-}
-
-/* ==========================================================================
-   מסך המעבר לוואטסאפ
-   ========================================================================== */
-.wa-overlay[hidden]{display:none!important;}   /* display:grid גובר על תכונת hidden */
-.wa-overlay{
-  position:fixed;
-  inset:0;
-  z-index:90;
-  display:grid;
-  place-items:center;
-  padding:20px;
-  background:radial-gradient(circle at 30% 20%,rgba(64,48,18,.46),rgba(40,30,12,.66));
-  -webkit-backdrop-filter:blur(6px);
-  backdrop-filter:blur(6px);
-  animation:waFade .28s var(--ease);
-}
-.wa-card{
-  position:relative;
-  width:min(100%,440px);
-  max-height:calc(100dvh - 40px);
-  overflow-y:auto;
-  text-align:center;
-  background:radial-gradient(circle at 44% 26%,#FDFAE6 0%,#F8F2CC 58%,#F0E7B2 100%);
-  border:1px solid rgba(190,166,96,.5);
-  border-radius:26px;
-  padding:clamp(28px,5vw,40px) clamp(22px,4.5vw,36px) clamp(24px,4vw,32px);
-  box-shadow:0 34px 60px -26px rgba(52,38,10,.7);
-  animation:waRise .38s var(--ease);
-}
-.wa-title{
-  font-size:clamp(21px,1.6vw + 14px,27px);
-  color:var(--brown);
-  font-weight:300;
-  margin-bottom:.5em;
-}
-.wa-sub{
-  color:var(--brown-soft);
-  font-size:clamp(15px,.5vw + 13.5px,17px);
-  line-height:1.65;
-  margin-bottom:1.25em;
-}
-.wa-msg{
-  background:rgba(255,255,250,.72);
-  border:1px solid rgba(190,166,96,.38);
-  border-radius:14px;
-  padding:clamp(14px,2.4vw,18px) clamp(14px,2.6vw,20px);
-  color:var(--brown-deep);
-  font-size:clamp(15.5px,.5vw + 14px,18px);
-  line-height:1.7;
-  margin-bottom:clamp(20px,3vw,26px);
-}
-.btn--wa{
-  display:block;
-  background:linear-gradient(to bottom right,#E3D486,var(--gold));
-  border-color:rgba(120,96,40,.45);
-  color:#4A3616;
-  font-weight:500;
-}
-.btn--wa:hover,.btn--wa:focus-visible{
-  background:linear-gradient(to bottom right,#EADD97,#D9C863);
-  color:#3D2C10;
-}
-.wa-back{
-  display:block;
-  margin:clamp(14px,2vw,18px) auto 0;
-  background:none;
-  border:0;
-  color:var(--brown-soft);
-  font-family:inherit;
-  font-size:15.5px;
-  letter-spacing:.02em;
-  cursor:pointer;
-  padding:6px 10px;
-  border-radius:8px;
-}
-.wa-back:hover{color:var(--brown);text-decoration:underline;}
-.wa-close{
-  position:absolute;
-  inset-block-start:10px;
-  inset-inline-start:12px;
-  width:38px;height:38px;
-  display:grid;place-items:center;
-  background:none;border:0;
-  color:var(--brown-soft);
-  font-size:26px;line-height:1;
-  cursor:pointer;
-  border-radius:50%;
-  transition:background-color .25s var(--ease),color .25s var(--ease);
-}
-.wa-close:hover{background:rgba(160,130,70,.14);color:var(--brown);}
-@keyframes waFade{from{opacity:0;}to{opacity:1;}}
-@keyframes waRise{from{opacity:0;transform:translateY(16px) scale(.97);}to{opacity:1;transform:none;}}
-@media (prefers-reduced-motion:reduce){
-  .wa-overlay,.wa-card{animation:none;}
 }
