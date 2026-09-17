@@ -166,13 +166,13 @@ s{text-decoration-thickness:1px;}
 
 /* ================= about ================= */
 .about{background:var(--cream);}
-.about-head{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,72px);align-items:end;}
+.about-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:end;}
 .about-lead{
   font-family:'Frank Ruhl Libre',serif;font-size:clamp(1.34rem,2.9vw,1.9rem);
   line-height:1.56;color:var(--espresso);font-weight:400;letter-spacing:-.01em;
 }
 .about-quote{
-  border-inline-start:2px solid var(--gilt);padding-inline-start:24px;
+  border-inline-start:2px solid var(--gilt);padding-inline-start:44px;
   font-family:'Frank Ruhl Libre',serif;font-size:clamp(1.34rem,2.9vw,1.9rem);
   line-height:1.56;color:var(--clay-deep);
 }
@@ -236,33 +236,25 @@ s{text-decoration-thickness:1px;}
   text-shadow:0 2px 24px rgba(30,16,12,.5);
 }
 
-/* ================= gates ================= */
-.gates{background:var(--cream-2);}
-.gates-head{
-  display:grid;grid-template-columns:1fr .9fr;gap:clamp(22px,4vw,64px);align-items:end;
-  margin-bottom:clamp(38px,5vw,58px);
+/* ================= what we learn ================= */
+.learn{background:var(--cream-2);}
+.learn-head{margin-bottom:clamp(32px,4vw,48px);}
+.learn-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(28px,4.4vw,66px);align-items:start;}
+.learn-body{display:flex;flex-direction:column;gap:20px;}
+.learn-body p{color:var(--muted);font-size:1.1rem;line-height:1.85;}
+.learn-note{
+  background:#FFFCF9;border:1px solid var(--line);border-radius:18px;
+  padding:clamp(24px,3vw,32px);box-shadow:var(--sh-sm);
+  font-family:'Frank Ruhl Libre',serif;color:var(--clay-deep);
+  font-size:clamp(1.12rem,2vw,1.3rem);line-height:1.68;
 }
-.gates-head .support{color:var(--muted);font-size:1.07rem;line-height:1.8;}
-.gates-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,22px);}
-.gate{
-  position:relative;display:flex;align-items:center;gap:18px;
-  background:#FFFCF9;
-  border:1px solid var(--line);border-radius:18px;
-  padding:clamp(24px,2.8vw,32px);
-  transition:transform .4s cubic-bezier(.2,.8,.3,1), box-shadow .4s ease, border-color .4s ease;
-}
-.gate:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:var(--line-2);}
-.gate .ic{
-  flex:0 0 auto;width:54px;height:54px;border-radius:50%;
-  display:grid;place-items:center;
-  background:linear-gradient(145deg,var(--blush-soft),#F7E4DA);
-  border:1px solid rgba(190,155,98,.5);color:var(--clay-deep);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
-}
-.gate h3{font-size:clamp(1.14rem,1.9vw,1.3rem);color:var(--espresso);font-weight:500;line-height:1.4;}
 
 /* ================= who ================= */
 .who{background:var(--cream);}
+.who-lead{
+  margin-top:26px;max-width:62ch;
+  color:var(--muted);font-size:1.1rem;line-height:1.85;
+}
 .who-list{
   display:grid;grid-template-columns:1fr 1fr;
   gap:0 clamp(28px,4.4vw,70px);
@@ -309,6 +301,12 @@ s{text-decoration-thickness:1px;}
   content:"";position:absolute;inset-block-start:0;inset-inline:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(220,196,154,.75),transparent);
 }
+.price-soldout{
+  display:flex;align-items:center;gap:10px;
+  font-size:1rem;font-weight:600;color:var(--on-dark-2);
+  padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid var(--line-dark);
+}
+.price-soldout span{color:var(--blush);}
 .price-label{font-size:.79rem;letter-spacing:.22em;color:var(--blush);font-weight:600;margin-bottom:18px;}
 .price-now{
   font-family:'Frank Ruhl Libre',serif;font-size:clamp(2.9rem,7.4vw,3.9rem);line-height:1.05;
@@ -322,7 +320,7 @@ s{text-decoration-thickness:1px;}
   margin-top:22px;padding-top:20px;border-top:1px solid var(--line-dark);
   font-size:.99rem;color:var(--blush);font-weight:600;
 }
-.price-card .cta{margin-top:26px;width:100%;}
+.price-card .cta{margin-top:30px;width:100%;}
 
 /* ================= guide ================= */
 .guide{background:var(--cream);}
@@ -413,8 +411,8 @@ s{text-decoration-thickness:1px;}
 
 /* ================= responsive ================= */
 @media (max-width:1000px){
-  .about-head,.about-cols,.tantra-cols,.gates-head,.details-grid,.guide-grid,.safe-grid{grid-template-columns:1fr;}
-  .about-head,.gates-head{align-items:start;}
+  .about-head,.about-cols,.tantra-cols,.learn-grid,.details-grid,.guide-grid,.safe-grid{grid-template-columns:1fr;}
+  .about-head{align-items:start;}
   .tantra-cols{gap:0;}
   .tantra-cols p + p{
     border-inline-start:0;padding-inline-start:0;
@@ -429,7 +427,11 @@ s{text-decoration-thickness:1px;}
 @media (max-width:640px){
   body{font-size:16.5px;padding-bottom:84px;}
   .gates-grid{grid-template-columns:1fr;}
-  .who-list{grid-template-columns:1fr;}
+  .who-lead{
+  margin-top:26px;max-width:62ch;
+  color:var(--muted);font-size:1.1rem;line-height:1.85;
+}
+.who-list{grid-template-columns:1fr;}
   .who-item:nth-child(2){border-top:1px solid var(--line);padding-top:20px;}
   .about-cols{gap:26px;}
   .hero-photo img{height:clamp(280px,56vw,380px);}
@@ -456,7 +458,7 @@ s{text-decoration-thickness:1px;}
     <span class="brand">Restart</span>
     <span class="right">
       <span class="meta">16.10 · יום שישי · עדנים</span>
-      <a class="cta cta--sm" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%9E%D7%95%D7%A8%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%96%D7%95%D7%92%20%D7%A9%D7%9C%D7%A0%D7%95%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
+      <a class="cta cta--sm" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
     </span>
   </div>
 </div>
@@ -483,7 +485,7 @@ s{text-decoration-thickness:1px;}
     </div>
 
     <span class="hero-badge"><span class="dot" aria-hidden="true"></span>מחיר הרשמה מוקדמת עד 18.9</span>
-    <a class="cta" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%9E%D7%95%D7%A8%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%96%D7%95%D7%92%20%D7%A9%D7%9C%D7%A0%D7%95%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
+    <a class="cta" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
   </div>
 </header>
 
@@ -557,58 +559,20 @@ s{text-decoration-thickness:1px;}
   </div>
 </section>
 
-<!-- ===================== מה נחווה ונלמד ===================== -->
-<section class="section gates" id="gates">
+<!-- ===================== מה נלמד בסדנא ===================== -->
+<section class="section learn" id="learn">
   <div class="wrap">
-    <div class="gates-head">
-      <div class="reveal">
-        <h2>מה נחווה ונלמד?</h2>
-        <div class="rule"></div>
-      </div>
-      <p class="support reveal d1">נקבל כלים מעשיים מעולם הטנטרה לחיבור, לתקשורת ולמגע שנוכל לתרגל גם בבית.</p>
+    <div class="learn-head reveal">
+      <h2>מה נלמד בסדנא?</h2>
+      <div class="rule"></div>
     </div>
 
-    <div class="gates-grid">
-      <article class="gate reveal">
-        <span class="ic" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="17.5" cy="22" r="9.5"/><circle cx="26.5" cy="22" r="9.5"/>
-          </svg>
-        </span>
-        <h3>חיבור ותקשורת זוגית</h3>
-      </article>
-
-      <article class="gate reveal d1">
-        <span class="ic" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="13" cy="22" r="1.8" fill="currentColor" stroke="none"/>
-            <path d="M19 15.5a10.5 10.5 0 0 1 0 13"/>
-            <path d="M25 11.5a16 16 0 0 1 0 21"/>
-            <path d="M31 7.5a21.5 21.5 0 0 1 0 29"/>
-          </svg>
-        </span>
-        <h3>הקשבה, נוכחות ואינטימיות רגשית</h3>
-      </article>
-
-      <article class="gate reveal d2">
-        <span class="ic" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <path d="M10 19c0 7.5 5.4 13 12 13s12-5.5 12-13"/>
-            <path d="M15.5 14c0 4.7 2.9 8 6.5 8s6.5-3.3 6.5-8"/>
-          </svg>
-        </span>
-        <h3>כלים מעשיים למגע ולחיבור בבית</h3>
-      </article>
-
-      <article class="gate reveal d3">
-        <span class="ic" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 35c-6.4-2.6-9.6-7.4-8-13 1.2-4.2 4.6-6.4 4.6-11 5 3.6 11.4 7.2 11.4 14 0 5.4-3.6 8.8-8 10z"/>
-            <path d="M22 35c-2.8-1.6-4-4-3.2-6.6.6-2 2.2-3 2.2-5.2 2.4 1.8 5 3.4 5 6.6 0 2.6-1.8 4.4-4 5.2z"/>
-          </svg>
-        </span>
-        <h3>חקירה משותפת של אנרגיית החיים והתשוקה</h3>
-      </article>
+    <div class="learn-grid">
+      <div class="learn-body reveal">
+        <p>כיצד ליצור חיבור פנימי והדדי – כיצד להעמיק את החיבור שלנו עם עצמנו, להכיר את הגבולות והרגשות שלנו וכיצד לתקשר זאת עם בני הזוג באופן שמייצר קירבה, פתיחה של הלב והעמקת האינטימיות בקשר.</p>
+        <p>נלמד כיצד להביא נוכחות ולייצר מרחב בטוח של אהבה.</p>
+      </div>
+      <p class="learn-note reveal d1">סדנא חווייתית, מהנה ומקרבת המשלבת בתוכה גם המון למידה וכלים מעשיים למגע ולחיבור, שאפשר לתרגל גם בבית ולהכניס לשיגרה הזוגית.</p>
     </div>
   </div>
 </section>
@@ -619,6 +583,7 @@ s{text-decoration-thickness:1px;}
     <div class="reveal">
       <h2>למי הסדנא מתאימה?</h2>
       <div class="rule"></div>
+      <p class="who-lead">הסדנא מתאימה לזוגות בכל שלבי הקשר הזוגי.<br>ככל שתקדימו לבוא, תוכלו ללמוד לבנות יחד קשר המתבסס על שפה משותפת ומיניות בריאה ומודעת.</p>
     </div>
     <div class="who-list">
       <div class="who-item reveal"><span class="bud" aria-hidden="true">✨</span><p>לזוגות שמתנסים בטנטרה בפעם הראשונה ורוצים להכיר את העולם הזה יחד, בסקרנות ובפתיחות.</p></div>
@@ -654,12 +619,11 @@ s{text-decoration-thickness:1px;}
       </div>
 
       <div class="price-card reveal d1">
-        <p class="price-label">מחיר הרשמה מוקדמת</p>
-        <div class="price-now">780 <span class="unit">₪</span></div>
-        <p class="price-sub">בלבד לזוג</p>
-        <p class="price-was">במקום <s>980 ₪</s></p>
-        <p class="price-until"><span aria-hidden="true">◆</span>מחיר ההרשמה המוקדמת תקף עד 18.9</p>
-        <a class="cta cta--onDark" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%9E%D7%95%D7%A8%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%96%D7%95%D7%92%20%D7%A9%D7%9C%D7%A0%D7%95%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
+        <p class="price-soldout"><span aria-hidden="true">◆</span>מחיר מכירה מוקדמת עד ה18.9 – אזל</p>
+        <p class="price-label">מחיר נוכחי</p>
+        <div class="price-now">980 <span class="unit">₪</span></div>
+        <p class="price-sub">לזוג</p>
+        <a class="cta cta--onDark" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
       </div>
     </div>
   </div>
@@ -716,7 +680,7 @@ s{text-decoration-thickness:1px;}
       <path d="M98 13c-3-3-6-3-8 0 2 3 5 3 8 0z"/>
     </svg>
     <h2>מתחשק לכם לעצור רגע את השגרה, להיפגש מחדש ולגלות עוד משהו על הקשר שלכם?</h2>
-    <a class="cta" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%9E%D7%95%D7%A8%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%96%D7%95%D7%92%20%D7%A9%D7%9C%D7%A0%D7%95%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
+    <a class="cta" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
     <p class="foot-meta">
       <span>16.10</span><span aria-hidden="true">·</span>
       <span>יום שישי</span><span aria-hidden="true">·</span>
@@ -729,12 +693,12 @@ s{text-decoration-thickness:1px;}
 <footer class="footer">
   <div class="wrap">
     <span>Restart · מסע חקירה טנטרי · סדנא יומית לזוגות</span>
-    <a href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%9E%D7%95%D7%A8%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%96%D7%95%D7%92%20%D7%A9%D7%9C%D7%A0%D7%95%20%F0%9F%92%97" target="_blank" rel="noopener">054-479-9145</a>
+    <a href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">054-479-9145</a>
   </div>
 </footer>
 
 <div class="bar" id="bar">
-  <a class="cta" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%94%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%9E%D7%95%D7%A8%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%96%D7%95%D7%92%20%D7%A9%D7%9C%D7%A0%D7%95%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
+  <a class="cta" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE16.10.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
 </div>
 
 <script>
