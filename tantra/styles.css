@@ -739,3 +739,103 @@ html:not(.js) .reveal{opacity:1;transform:none;}
   .faq-a{animation:none;}
   .faq-item summary::after{transition:none;}
 }
+
+/* ==========================================================================
+   פידבקים — קרוסלה שאפשר לדפדף בה
+   ========================================================================== */
+.voices__wrap{
+  display:flex;
+  align-items:center;
+  gap:clamp(6px,1.4vw,16px);
+}
+
+.voices__track{
+  flex:1 1 auto;
+  min-width:0;
+  display:flex;
+  gap:clamp(14px,2vw,22px);
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding-block:6px;
+  scrollbar-width:none;            /* פס הגלילה מוסתר — הדפדוף בהחלקה/בחיצים */
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+}
+.voices__track::-webkit-scrollbar{display:none;}
+.voices__track:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,253,240,.75);border-radius:18px;}
+
+.voice{
+  flex:0 0 min(86%,340px);
+  scroll-snap-align:center;
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:linear-gradient(to bottom right,rgba(255,253,244,.95),rgba(250,246,226,.9));
+  border:1px solid rgba(146,118,74,.3);
+  border-radius:18px;
+  padding:clamp(24px,3.4vw,34px) clamp(20px,3vw,30px);
+  box-shadow:0 12px 26px -16px rgba(92,70,26,.6);
+}
+.voice blockquote{
+  margin:0;
+  color:var(--brown-deep);
+  font-size:clamp(16px,.8vw + 13.5px,19px);
+  line-height:1.75;
+}
+.voice blockquote::before{content:"”";color:rgba(110,72,34,.55);}
+.voice blockquote::after{content:"”";color:rgba(110,72,34,.55);}
+
+/* חיצים — למסכים עם עכבר */
+.voices__arrow{
+  flex:0 0 auto;
+  width:44px;height:44px;
+  display:none;
+  place-items:center;
+  border:1px solid rgba(110,80,35,.35);
+  border-radius:50%;
+  background:rgba(255,253,240,.8);
+  cursor:pointer;
+  transition:background-color .25s var(--ease),transform .25s var(--ease),opacity .25s var(--ease);
+}
+.voices__arrow::before{
+  content:"";
+  width:11px;height:11px;
+  /* גבולות פיזיים בכוונה: הלוגיים מתהפכים בכיוון ימין-לשמאל */
+  border-top:2px solid var(--brown);
+  border-right:2px solid var(--brown);
+}
+.voices__arrow--prev::before{transform:rotate(45deg) translate(-2px,2px);}    /* חץ ימינה — אחורה */
+.voices__arrow--next::before{transform:rotate(-135deg) translate(-2px,2px);}  /* חץ שמאלה — קדימה */
+.voices__arrow:hover{background:#fff;transform:scale(1.06);}
+.voices__arrow:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,253,240,.9);}
+.voices__arrow[disabled]{opacity:.3;cursor:default;transform:none;}
+
+/* נקודות המיקום */
+.voices__dots{
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  margin-top:clamp(18px,2.6vw,26px);
+}
+.voices__dots button{
+  width:9px;height:9px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(90,65,25,.3);
+  cursor:pointer;
+  transition:background-color .25s var(--ease),transform .25s var(--ease);
+}
+.voices__dots button[aria-selected="true"]{background:#6E4A22;transform:scale(1.35);}
+.voices__dots button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(255,253,240,.9);}
+
+@media (hover:hover) and (min-width:760px){
+  .voices__arrow{display:grid;}
+  .voice{flex-basis:min(44%,360px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .voices__track{scroll-behavior:auto;}
+}
