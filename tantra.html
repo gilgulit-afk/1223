@@ -286,19 +286,25 @@ s{text-decoration-thickness:1px;}
   background:linear-gradient(90deg,transparent,rgba(220,196,154,.75),transparent);
 }
 .price-soldout{
-  display:flex;align-items:center;gap:10px;
+  display:flex;align-items:flex-start;gap:10px;
   font-size:1rem;font-weight:600;color:var(--on-dark-2);
   padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid var(--line-dark);
 }
-.price-soldout span{color:var(--blush);}
+.price-soldout span{color:var(--blush);line-height:1.5;}
 .price-label{font-size:.79rem;letter-spacing:.22em;color:var(--blush);font-weight:600;margin-bottom:18px;}
 .price-now{
   font-family:'Frank Ruhl Libre',serif;font-size:clamp(2.9rem,7.4vw,3.9rem);line-height:1.05;
-  color:#FCF3EC;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;
+  color:#FCF3EC;font-variant-numeric:tabular-nums;
+  display:flex;align-items:baseline;gap:.62em;flex-wrap:wrap;
 }
 .price-now .unit{font-size:.5em;color:var(--gilt-soft);}
+.price-old{
+  font-size:.74em;color:var(--on-dark-3);
+  text-decoration-line:line-through;text-decoration-thickness:.045em;
+  text-decoration-color:rgba(226,179,164,.85);
+}
+.price-new{color:#FCF3EC;}
 .price-sub{font-size:1rem;color:var(--on-dark-2);margin-top:6px;}
-.price-was{margin-top:14px;color:var(--on-dark-3);font-size:1.02rem;}
 .price-until{
   display:flex;align-items:center;gap:10px;
   margin-top:22px;padding-top:20px;border-top:1px solid var(--line-dark);
@@ -604,10 +610,12 @@ s{text-decoration-thickness:1px;}
       </div>
 
       <div class="price-card reveal d1">
-        <p class="price-soldout"><span aria-hidden="true">◆</span>4 כרטיסים זוגיים בהרשמה מוקדמת</p>
-        <div class="price-now">780 <span class="unit">₪</span></div>
+        <p class="price-soldout"><span aria-hidden="true">◆</span>4 כרטיסים במקום 980 לארבעת הזוגות הראשונים</p>
+        <div class="price-now">
+          <s class="price-old">980 ₪</s>
+          <span class="price-new">780 <span class="unit">₪</span></span>
+        </div>
         <p class="price-sub">לזוג</p>
-        <p class="price-was">במקום <s>980 ₪</s></p>
         <a class="cta cta--onDark" href="https://wa.me/972544799145?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%9C%D7%99%20%F0%9F%8C%B8%0A%D7%90%D7%A0%D7%95%20%D7%9E%D7%AA%D7%A2%D7%A0%D7%99%D7%99%D7%A0%D7%99%D7%9D%20%D7%91%D7%A1%D7%93%D7%A0%D7%90%20%D7%94%D7%96%D7%95%D7%92%D7%99%D7%AA%20%E2%80%93%20%D7%9E%D7%A1%D7%A2%20%D7%97%D7%A7%D7%99%D7%A8%D7%94%20%D7%98%D7%A0%D7%98%D7%A8%D7%99%20%D7%91%D6%BE8.1.%0A%D7%A0%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%95%D7%9C%D7%A9%D7%A8%D7%99%D7%99%D7%9F%20%D7%9E%D7%A7%D7%95%D7%9D%20%F0%9F%92%97" target="_blank" rel="noopener">לפרטים והרשמה</a>
       </div>
     </div>
